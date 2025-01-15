@@ -7,7 +7,7 @@ The purpose of this repository is to create a ready-to-use project following _Do
 [NodeJS](https://nodejs.org/en/) | [TypeScript](https://www.typescriptlang.org/) | [NestJS](https://nestjs.com/) | [PostgreSQL](https://www.postgresql.org/) | [Mikro-ORM](https://mikro-orm.io/) | [Docker](https://www.docker.com/)
 
 ---
-
+### Table of Contents
 - [Clean Architecture](#clean-architecture)
 - [Domain Driven Design](#domain-driven-design)
 - [Functional Programming](#functional-programming)
@@ -32,4 +32,4 @@ The purpose of this repository is to create a ready-to-use project following _Do
 ### Automatic Documentation Generation
 ### Semantic Versioning
 ### Static Code Analysis
-### Backend best practices
+### Backend Best Practices
