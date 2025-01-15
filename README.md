@@ -6,7 +6,8 @@ The purpose of this repository is to create a ready-to-use NestJs typescript pro
 - Domain Driven Design
 - Functional Programming
 - Testing
-- Continuos Integration
+- Continuous Integration
+- Continuous Delivery
 - Automatic Dependency Update
 - Automatic Documentation Generation
 - Semantic Versioning
