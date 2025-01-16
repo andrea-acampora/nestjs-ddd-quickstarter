@@ -11,18 +11,6 @@
   "git-submodules": {
     "enabled": true
   },
-  "packageRules": [
-    {
-      "description": "Wait one day before proposing updates",
-      "internalChecksFilter": "strict",
-      "stabilityDays": 1
-    },
-    {
-      "description": "Updates to GitHub Actions should be tagged as 'ci'",
-      "matchPaths": [".github/workflows/*.yml", ".github/workflows/*.yaml"],
-      "semanticCommitType": "ci"
-    }
-  ],
   "prConcurrentLimit": 25,
   "prHourlyLimit": 0,
   "separateMajorMinor": true,
