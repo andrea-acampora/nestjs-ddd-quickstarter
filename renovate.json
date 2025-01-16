@@ -13,7 +13,7 @@
       "automerge": true
     },
     "platformAutomerge": true
-  ]
+  ],
   "dependencyDashboard": true,
   "automerge": true,
   "automergeType": "pr",
