@@ -36,7 +36,7 @@
     "automergeType": "pr",
     "updateStrategy": "rebase",
     "prCreation": "immediate",
-    "rebaseWhen": "conflicted"
+    "rebaseWhen": "conflicted",
     "platformAutomerge": true,
     "assignees": [
         "andrea-acampora"
