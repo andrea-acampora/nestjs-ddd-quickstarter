@@ -26,9 +26,8 @@
     "dependencyDashboard": true,
     "automerge": true,
     "automergeType": "pr",
-    "updateStrategy": "rebase",
     "prCreation": "immediate",
-    "rebaseWhen": "conflicted",
+    "rebaseWhen": "auto",
     "platformAutomerge": true,
     "assignees": [
         "andrea-acampora"
