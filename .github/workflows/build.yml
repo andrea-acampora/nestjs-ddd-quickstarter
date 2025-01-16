@@ -2,16 +2,25 @@ name: Build
 
 on:
   push:
+    paths-ignore:
+      - '.gitignore'
+      - 'CHANGELOG.md'
+      - 'LICENSE'
+      - 'README.md'
+      - 'renovate.json'
   pull_request:
 
 jobs:
-  build:
+  Build:
     strategy:
       matrix:
         node-version: ['18.x', '20.x']
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+          fetch-depth: 0
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v4
         with:
