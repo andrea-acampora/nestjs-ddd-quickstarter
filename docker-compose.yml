@@ -1,0 +1,25 @@
+# PostgreSQL development database
+services:
+  postgresql-dev:
+    container_name: postgresql-dev
+    image: postgres:latest
+    restart: unless-stopped
+    ports:
+      - "15432:5432/tcp"
+    environment:
+      - POSTGRES_DB=db-test
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    volumes:
+      - ./postgresql_volume:/var/lib/postgresql/data:rw,Z
+    stdin_open: true
+    tty: true
+    networks:
+      - postgres
+
+volumes:
+  postgresql_volume:
+
+networks:
+  postgres:
+    driver: bridge
