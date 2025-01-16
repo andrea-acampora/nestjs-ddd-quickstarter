@@ -1,36 +1,47 @@
 {
-  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": [
-    "config:recommended", ":rebaseStalePrs", ":semanticCommits", ":semanticCommitTypeAll(chore)"
-  ],
-  "packageRules": [
-    {
-      "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
-      "automerge": true
+    "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+    "extends": [
+        "config:recommended",
+        ":rebaseStalePrs",
+        ":semanticCommits",
+        ":semanticCommitTypeAll(chore)"
+    ],
+    "packageRules": [
+        {
+            "matchUpdateTypes": [
+                "minor",
+                "patch",
+                "pin",
+                "digest"
+            ],
+            "automerge": true
+        },
+        {
+            "matchDepTypes": [
+                "devDependencies"
+            ],
+            "automerge": true
+        }
+    ],
+    "dependencyDashboard": true,
+    "automergeType": "pr",
+    "platformAutomerge": true,
+    "assignees": [
+        "andrea-acampora"
+    ],
+    "reviewers": [
+        "andrea-acampora"
+    ],
+    "includeForks": true,
+    "labels": [
+        "dependencies"
+    ],
+    "git-submodules": {
+        "enabled": true
     },
-    {
-      "matchDepTypes": ["devDependencies"],
-      "automerge": true
-    },
-    "platformAutomerge": true
-  ],
-  "dependencyDashboard": true,
-  "automerge": true,
-  "automergeType": "pr",
-  "assignees": [
-    "andrea-acampora"
-  ],
-  "reviewers": [
-    "andrea-acampora"
-  ],
-  "includeForks": true,
-  "labels": ["dependencies"],
-  "git-submodules": {
-    "enabled": true
-  },
-  "prConcurrentLimit": 25,
-  "prHourlyLimit": 0,
-  "separateMajorMinor": true,
-  "separateMinorPatch": true,
-  "separateMultipleMajor": true
+    "prConcurrentLimit": 25,
+    "prHourlyLimit": 0,
+    "separateMajorMinor": true,
+    "separateMinorPatch": true,
+    "separateMultipleMajor": true
 }
