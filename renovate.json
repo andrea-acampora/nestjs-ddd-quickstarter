@@ -14,17 +14,29 @@
                 "pin",
                 "digest"
             ],
-            "automerge": true
+            "automerge": true,
+            "automergeType": "pr",
+            "updateStrategy": "rebase",
+            "prCreation": "immediate",
+            "rebaseWhen": "conflicted"
         },
         {
             "matchDepTypes": [
                 "devDependencies"
             ],
-            "automerge": true
+            "automerge": true,
+            "automergeType": "pr",
+            "updateStrategy": "rebase",
+            "prCreation": "immediate",
+            "rebaseWhen": "conflicted"
         }
     ],
     "dependencyDashboard": true,
+    "automerge": true,
     "automergeType": "pr",
+    "updateStrategy": "rebase",
+    "prCreation": "immediate",
+    "rebaseWhen": "conflicted"
     "platformAutomerge": true,
     "assignees": [
         "andrea-acampora"
