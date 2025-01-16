@@ -14,13 +14,13 @@
                 "pin",
                 "digest"
             ],
-            "automerge": true,
+            "automerge": true
         },
         {
             "matchDepTypes": [
                 "devDependencies"
             ],
-            "automerge": true,
+            "automerge": true
         }
     ],
     "dependencyDashboard": true,
