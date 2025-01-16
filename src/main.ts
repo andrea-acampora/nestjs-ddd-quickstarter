@@ -17,7 +17,7 @@ async function bootstrap() {
     type: VersioningType.URI,
     defaultVersion: '1',
   });
-  await app.register(helmet);
+  app.enableShutdownHooks();
   app.enableCors();
   app.useStaticAssets({
     root: join(__dirname, '../public'),
@@ -30,6 +30,8 @@ async function bootstrap() {
       forbidNonWhitelisted: true,
     }),
   );
+  await app.register(helmet);
+
   const port = process.env.PORT || 3000;
   await app.listen(port, '0.0.0.0');
 }
