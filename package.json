@@ -18,12 +18,16 @@
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-    "test:e2e": "jest --config ./test/jest-e2e.json"
+    "test:e2e": "jest --config test/e2e/jest-e2e.json --detectOpenHandles --forceExit",
+    "schema:update": "npm run build && npx mikro-orm schema:update -r --config src/config/database/mikro-orm.config.ts",
+    "migrate:up": "npm run build && npx mikro-orm migration:up --config --config src/config/database/mikro-orm.config.ts",
+    "migrate:down": "npm run build && npx mikro-orm migration:down --config --config src/config/database/mikro-orm.config.ts"
   },
   "dependencies": {
     "@eslint/eslintrc": "^3.2.0",
     "@fastify/compress": "^8.0.1",
-    "@fastify/helmet": "^13.0.1",
+    "@fastify/helmet": "^11.1.1",
+    "@fastify/static": "^7.0.4",
     "@mikro-orm/core": "^6.4.3",
     "@mikro-orm/migrations": "^6.4.3",
     "@mikro-orm/nestjs": "^6.0.2",
@@ -35,8 +39,9 @@
     "@nestjs/core": "^10.0.0",
     "@nestjs/event-emitter": "^2.1.1",
     "@nestjs/platform-express": "^10.4.15",
-    "@nestjs/platform-fastify": "^11.0.1",
+    "@nestjs/platform-fastify": "^10.4.15",
     "@nestjs/schedule": "^4.1.2",
+    "@nestjs/terminus": "^10.2.3",
     "@nestjs/throttler": "^6.3.0",
     "bcryptjs": "^2.4.3",
     "class-transformer": "^0.5.1",
@@ -50,6 +55,7 @@
     "uuid": "^11.0.5"
   },
   "devDependencies": {
+    "@mikro-orm/cli": "^6.4.3",
     "@nestjs/cli": "^10.0.0",
     "@nestjs/schematics": "^10.0.0",
     "@nestjs/testing": "^10.0.0",
@@ -85,7 +91,7 @@
       "json",
       "ts"
     ],
-    "rootDir": "src",
+    "rootDir": "test",
     "testRegex": ".*\\.spec\\.ts$",
     "transform": {
       "^.+\\.(t|j)s$": "ts-jest"
