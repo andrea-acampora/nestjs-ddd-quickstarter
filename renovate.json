@@ -15,20 +15,12 @@
                 "digest"
             ],
             "automerge": true,
-            "automergeType": "pr",
-            "updateStrategy": "rebase",
-            "prCreation": "immediate",
-            "rebaseWhen": "conflicted"
         },
         {
             "matchDepTypes": [
                 "devDependencies"
             ],
             "automerge": true,
-            "automergeType": "pr",
-            "updateStrategy": "rebase",
-            "prCreation": "immediate",
-            "rebaseWhen": "conflicted"
         }
     ],
     "dependencyDashboard": true,
