@@ -18,6 +18,7 @@
         },
         {
             "matchDepTypes": [
+                "dependencies",
                 "devDependencies"
             ],
             "automerge": true
