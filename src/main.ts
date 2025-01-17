@@ -4,7 +4,6 @@ import {
   FastifyAdapter,
   NestFastifyApplication,
 } from '@nestjs/platform-fastify';
-import helmet from '@fastify/helmet';
 import { join } from 'path';
 import { ValidationPipe, VersioningType } from '@nestjs/common';
 
@@ -30,7 +29,6 @@ async function bootstrap() {
       forbidNonWhitelisted: true,
     }),
   );
-  await app.register(helmet);
 
   const port = process.env.PORT || 3000;
   await app.listen(port, '0.0.0.0');
