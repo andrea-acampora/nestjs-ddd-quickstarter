@@ -17,11 +17,17 @@
 The purpose of this repository is to create a ready-to-use project following _Domain-Driven Design_, _Clean Architecture_ and _Functional Programming_ best practices.
 
 
-### Stack:
+## Stack
 [NodeJS](https://nodejs.org/en/) | [TypeScript](https://www.typescriptlang.org/) | [NestJS](https://nestjs.com/) | [PostgreSQL](https://www.postgresql.org/) | [Mikro-ORM](https://mikro-orm.io/) | [Docker](https://www.docker.com/)
 
----
-### Table of Contents
+![nodejs](https://deviconapi.vercel.app/nodejs?color=83CD29ff&size=65)
+![typescript](https://deviconapi.vercel.app/typescript?color=007ACCFF&size=65) 
+![nestjs](https://deviconapi.vercel.app/nestjs?color=DF234FFF&size=65) 
+![postgresql](https://deviconapi.vercel.app/postgresql?version=plain&color=336791FF&size=65) 
+<img src="https://avatars.githubusercontent.com/u/54766168?s=200&v=4" width="65" /> 
+![docker](https://deviconapi.vercel.app/docker?color=019BC6FF&size=65)
+
+## Table of Contents
 - [Clean Architecture](#clean-architecture)
 - [Domain Driven Design](#domain-driven-design)
 - [Functional Programming](#functional-programming)
