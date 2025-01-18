@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "Template repository for NestJS projects following Domain-Driven Design, Clean Architecture and Functional Programming principles and best practice.",
   "author": "Andrea Acampora",
-  "private": false,
+  "private": true,
   "license": "MIT",
   "scripts": {
     "prepare": "lefthook install",
