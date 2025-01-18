@@ -36,7 +36,7 @@ The purpose of this repository is to create a ready-to-use project following _Do
      docker-compose up -d
      ```
 4. Provide a ```.env``` file with all required environment variables _(check out .env.dist example file)_
-5. Create and generate the database schema from your entity metadata:
+5. Create and generate the database schema from your entities metadata:
      ```bash
      npm run schema:update
      ```
