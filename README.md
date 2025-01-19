@@ -71,6 +71,16 @@ In the following chapters you will find a description of the main choices, techn
 ### Semantic Versioning
 ### Backend Best Practices
 
+<!--
+- Caching
+- Data Validation
+- Rate Limiting
+- API Versioning
+- Security
+- Logging
+- Events
+-->
+
 ## Contributors
 <a href="https://github.com/andrea-acampora/nestjs-ddd-quickstarter/contributors">
   <img src="https://contributors-img.web.app/image?repo=andrea-acampora/nestjs-ddd-quickstarter" />
