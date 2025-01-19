@@ -47,8 +47,9 @@ In the following chapters you will find a description of the main choices, techn
 7. Start to create your modules and entities following all the principles explained in the below chapters!
 
 ## Table of Contents
+- [Architecture](#architecture)
+- [Domain-Driven Design](#domain-driven-design)
 - [Clean Architecture](#clean-architecture)
-- [Domain Driven Design](#domain-driven-design)
 - [Functional Programming](#functional-programming)
 - [Testing](#testing)
 - [Continuous Integration](#continuous-integration)
@@ -56,11 +57,11 @@ In the following chapters you will find a description of the main choices, techn
 - [Automatic Dependency Update](#automatic-dependency-update)
 - [Automatic Documentation Generation](#automatic-documentation-generation)
 - [Semantic Versioning](#semantic-versioning)
-- [Static Code Analysis](#static-code-analysis)
 - [Backend Best Practices](#backend-best-practices)
 
+### Architecture
+### Domain-Driven Design
 ### Clean Architecture
-### Domain Driven Design
 ### Functional Programming
 ### Testing
 ### Continuous Integration
@@ -68,10 +69,9 @@ In the following chapters you will find a description of the main choices, techn
 ### Automatic Dependency Update
 ### Automatic Documentation Generation
 ### Semantic Versioning
-### Static Code Analysis
 ### Backend Best Practices
 
 ## Contributors
-<a href="https://github.com/andrea-acampora/nestjs-ddd-quickstarter">
-	<img src="https://contributors-img.web.app/image?repo=andrea-acampora/nestjs-ddd-quickstarter" />
+<a href="https://github.com/andrea-acampora/nestjs-ddd-quickstarter/contributors">
+  <img src="https://contributors-img.web.app/image?repo=andrea-acampora/nestjs-ddd-quickstarter" />
 </a>
