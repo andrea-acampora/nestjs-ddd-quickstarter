@@ -75,8 +75,9 @@ be considered because the purpose of this project is just to create a simple, ex
 For this reason, we are going to implement a **Modular Monolith**: an architectural pattern that structures the
 application into independent modules or components with well-defined boundaries.
 
+<center>
 <img src="https://raw.githubusercontent.com/andrea-acampora/nestjs-ddd-quickstarter/refs/heads/main/docs/images/modular-monolith.png" height="250" alt="Modular Monolith Architecture" /> 
-<center><sup>Example of a Modular Monolith Architecture.</sup></center>
+<sup>Example of a Modular Monolith Architecture.</sup></center>
 
 
 In addition to simplicity and extensibility, a modular monolith allows us to start the development of the application as
@@ -91,8 +92,10 @@ application. A module class define providers and inject them into other componen
 
 ### Clean Architecture
 
+<center>
 <img src="https://raw.githubusercontent.com/andrea-acampora/nestjs-ddd-quickstarter/refs/heads/main/docs/images/clean-architecture.png" height="250" alt="Clean Architecture" />
-<center><sup>Different layers of the Clean Architecture.</sup></center>
+<sup>Different layers of the Clean Architecture.</sup>
+</center>
 
 ### Functional Programming
 
