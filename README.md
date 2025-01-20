@@ -13,13 +13,19 @@
 ![GitHub Repo stars](https://img.shields.io/github/stars/andrea-acampora/nestjs-ddd-quickstarter?style=flat&color=yellow)
 ![GitHub contributors](https://img.shields.io/github/contributors/andrea-acampora/nestjs-ddd-quickstarter?color=orange)
 
+The purpose of this repository is to create a ready-to-use project following _Domain-Driven Design_, _Clean
+Architecture_ and _Functional Programming_ best practices combined with some _DevOps_ techniques such as _Continuous
+Integration_, _Continuous Delivery_ and _Quality Assurance_.
 
-The purpose of this repository is to create a ready-to-use project following _Domain-Driven Design_, _Clean Architecture_ and _Functional Programming_ best practices combined with some _DevOps_ techniques such as _Continuous Integration_, _Continuous Delivery_ and _Quality Assurance_.
-
-The project is completely open source using the **MIT** license, feel free to contribute by opening a [issue](https://github.com/andrea-acampora/nestjs-ddd-quickstarter/issues/new/choose), a [pull request](https://github.com/andrea-acampora/nestjs-ddd-quickstarter/compare) or a [discussion topic](https://github.com/andrea-acampora/nestjs-ddd-quickstarter/discussions/new/choose).
+The project is completely open source using the **MIT** license, feel free to contribute by opening
+a [issue](https://github.com/andrea-acampora/nestjs-ddd-quickstarter/issues/new/choose),
+a [pull request](https://github.com/andrea-acampora/nestjs-ddd-quickstarter/compare) or
+a [discussion topic](https://github.com/andrea-acampora/nestjs-ddd-quickstarter/discussions/new/choose).
 
 In the following chapters you will find a description of the main choices, technologies and techniques adopted.
+
 ## Stack
+
 [NodeJS](https://nodejs.org/en/) | [TypeScript](https://www.typescriptlang.org/) | [NestJS](https://nestjs.com/) | [PostgreSQL](https://www.postgresql.org/) | [Mikro-ORM](https://mikro-orm.io/) | [Docker](https://www.docker.com/)
 
 [![nodejs](https://deviconapi.vercel.app/nodejs?color=83CD29ff&size=75)](https://nodejs.org/en)
@@ -30,6 +36,7 @@ In the following chapters you will find a description of the main choices, techn
 [![docker](https://deviconapi.vercel.app/docker?color=019BC6FF&size=75)](https://www.docker.com)
 
 ## Instructions
+
 1. Fork this repository and use it as ```template``` repository
 2. Install all dependencies
      ```bash
@@ -47,31 +54,71 @@ In the following chapters you will find a description of the main choices, techn
 7. Start to create your modules and entities following all the principles explained in the below chapters!
 
 ## Table of Contents
+
+- [Architecture](#architecture)
+- [Domain-Driven Design](#domain-driven-design)
 - [Clean Architecture](#clean-architecture)
-- [Domain Driven Design](#domain-driven-design)
 - [Functional Programming](#functional-programming)
 - [Testing](#testing)
 - [Continuous Integration](#continuous-integration)
 - [Continuous Delivery](#continuous-delivery)
 - [Automatic Dependency Update](#automatic-dependency-update)
-- [Automatic Documentation Generation](#automatic-documentation-generation)
+- [Automatic API Documentation Generation](#automatic-api-documentation-generation)
 - [Semantic Versioning](#semantic-versioning)
-- [Static Code Analysis](#static-code-analysis)
 - [Backend Best Practices](#backend-best-practices)
 
+### Architecture
+
+**NestJS** provides a modular architecture that allows the creation of loosely coupled and easily testable components. \
+Although this framework natively supports the development of microservice or event-driven architectures, they will not
+be considered because the purpose of this project is just to create a simple, extensible and ready-to-use application. \
+For this reason, we are going to implement a **Modular Monolith**: an architectural pattern that structures the
+application into independent modules or components with well-defined boundaries.
+
+<img src="docs/images/modular-monolith.png" height="250" alt="Modular Monolith Architecture" />
+<center><em>Example of a Modular Monolith Architecture.</em></center>
+
+In addition to simplicity and extensibility, a modular monolith allows us to start the development of the application as
+a single repository and deployment unit, with distinct and clear boundaries between business contexts.
+By this way, we can gradually refactor our architecture to a microservice architecture rather than implementing it from
+the beginning. \
+In **NestJS**, applications typically consists of multiple modules, each serving a specific purpose or feature set.
+A module is a class annotated with the `@Module()` decorator, and it encapsulates a specific domain or feature of the
+application. A module class define providers and inject them into other components leveraging **Dependency Injection**.
+
+### Domain-Driven Design
+
 ### Clean Architecture
-### Domain Driven Design
+
+<img src="docs/images/clean-architecture.png" height="250" alt="Clean Architecture" />
+<center><em>Different layers of the Clean Architecture.</em></center>
+
 ### Functional Programming
+
 ### Testing
+
 ### Continuous Integration
+
 ### Continuous Delivery
+
 ### Automatic Dependency Update
-### Automatic Documentation Generation
+
+### Automatic API Documentation Generation
+
 ### Semantic Versioning
-### Static Code Analysis
+
 ### Backend Best Practices
 
+- **Caching**
+- **Data Validation**
+- **Rate Limiting**
+- **API Versioning**
+- **Security**
+- **Logging**
+- **Events**
+
 ## Contributors
-<a href="https://github.com/andrea-acampora/nestjs-ddd-quickstarter">
-	<img src="https://contributors-img.web.app/image?repo=andrea-acampora/nestjs-ddd-quickstarter" />
+
+<a href="https://github.com/andrea-acampora/nestjs-ddd-quickstarter/contributors">
+  <img src="https://contributors-img.web.app/image?repo=andrea-acampora/nestjs-ddd-quickstarter" alt="Contributors" />
 </a>
