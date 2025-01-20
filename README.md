@@ -75,7 +75,7 @@ be considered because the purpose of this project is just to create a simple, ex
 For this reason, we are going to implement a **Modular Monolith**: an architectural pattern that structures the
 application into independent modules or components with well-defined boundaries.
 
-<img src="docs/images/modular-monolith.png" height="200" alt="Modular Monolith Architecture" />
+<img src="docs/images/modular-monolith.png" height="250" alt="Modular Monolith Architecture" />
 
 In addition to simplicity and extensibility, a modular monolith allows us to start the development of the application as
 a single repository and deployment unit, with distinct and clear boundaries between business contexts.
