@@ -13,7 +13,7 @@
 ![GitHub Repo stars](https://img.shields.io/github/stars/andrea-acampora/nestjs-ddd-quickstarter?style=flat&color=yellow)
 ![GitHub contributors](https://img.shields.io/github/contributors/andrea-acampora/nestjs-ddd-quickstarter?color=orange)
 
-The purpose of this repository is to create a ready-to-use project following _Domain-Driven Design_, _Clean
+The purpose of this [repository](https://github.com/andrea-acampora/nestjs-ddd-quickstarter) is to create a ready-to-use project following _Domain-Driven Design_, _Clean
 Architecture_ and _Functional Programming_ best practices combined with some _DevOps_ techniques such as _Continuous
 Integration_, _Continuous Delivery_ and _Quality Assurance_.
 
