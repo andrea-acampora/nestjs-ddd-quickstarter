@@ -63,7 +63,7 @@ In the following chapters you will find a description of the main choices, techn
 - [Continuous Integration](#continuous-integration)
 - [Continuous Delivery](#continuous-delivery)
 - [Automatic Dependency Update](#automatic-dependency-update)
-- [Automatic Documentation Generation](#automatic-documentation-generation)
+- [Automatic API Documentation Generation](#automatic-api-documentation-generation)
 - [Semantic Versioning](#semantic-versioning)
 - [Backend Best Practices](#backend-best-practices)
 
@@ -76,6 +76,7 @@ For this reason, we are going to implement a **Modular Monolith**: an architectu
 application into independent modules or components with well-defined boundaries.
 
 <img src="docs/images/modular-monolith.png" height="250" alt="Modular Monolith Architecture" />
+<center><em>Example of a Modular Monolith Architecture.</em></center>
 
 In addition to simplicity and extensibility, a modular monolith allows us to start the development of the application as
 a single repository and deployment unit, with distinct and clear boundaries between business contexts.
@@ -89,6 +90,9 @@ application. A module class define providers and inject them into other componen
 
 ### Clean Architecture
 
+<img src="docs/images/clean-architecture.png" height="250" alt="Clean Architecture" />
+<center><em>Different layers of the Clean Architecture.</em></center>
+
 ### Functional Programming
 
 ### Testing
@@ -99,21 +103,19 @@ application. A module class define providers and inject them into other componen
 
 ### Automatic Dependency Update
 
-### Automatic Documentation Generation
+### Automatic API Documentation Generation
 
 ### Semantic Versioning
 
 ### Backend Best Practices
 
-<!--
-- Caching
-- Data Validation
-- Rate Limiting
-- API Versioning
-- Security
-- Logging
-- Events
--->
+- **Caching**
+- **Data Validation**
+- **Rate Limiting**
+- **API Versioning**
+- **Security**
+- **Logging**
+- **Events**
 
 ## Contributors
 
