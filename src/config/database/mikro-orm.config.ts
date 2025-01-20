@@ -13,6 +13,6 @@ export default defineConfig({
   extensions: [Migrator],
   migrations: {
     tableName: 'migrations',
-    path: 'database/migrations',
+    path: 'src/config/database/migrations',
   },
 });
