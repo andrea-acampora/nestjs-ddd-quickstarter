@@ -76,9 +76,9 @@ For this reason, we are going to implement a **Modular Monolith**: an architectu
 application into independent modules or components with well-defined boundaries.
 
 <p align="center">
-<img src="https://raw.githubusercontent.com/andrea-acampora/nestjs-ddd-quickstarter/refs/heads/main/docs/images/modular-monolith.png" height="250" alt="Modular Monolith Architecture" /> 
+<img src="https://raw.githubusercontent.com/andrea-acampora/nestjs-ddd-quickstarter/refs/heads/main/docs/images/modular-monolith.png" height="250" alt="Modular Monolith Architecture" /><br>
+<sup>Example of a Modular Monolith Architecture.</sup>
 </p>
-<center><sup>Example of a Modular Monolith Architecture.</sup></center>
 
 
 In addition to simplicity and extensibility, a modular monolith allows us to start the development of the application as
@@ -95,10 +95,9 @@ application. A module class define providers and inject them into other componen
 
 <p align="center">
 <img src="https://raw.githubusercontent.com/andrea-acampora/nestjs-ddd-quickstarter/refs/heads/main/docs/images/clean-architecture.png" height="250" alt="Clean Architecture" />
-</p>
-<center>
+<br>
 <sup>Different layers of the Clean Architecture.</sup>
-</center>
+</p>
 
 ### Functional Programming
 
