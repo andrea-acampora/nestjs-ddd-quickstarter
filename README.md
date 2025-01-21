@@ -109,6 +109,8 @@ In this application, we are going to use these Clean Architecture layers:
 - **Application Layer**: contains the controllers and presenters. The former handle the orchestration of the application flow by managing the interaction between external actors and the business policies defined in the core. They therefore do not represent domain concepts let alone define business rules. The second ones deal with serialization and deserialization, then presentation, of data to the infrastructure layer or use case layer, thus adapting the data to the most convenient format for the layers involved.
 - **Infrastructure Layer**: contains all the technological choices of the system. They are confined to the outermost layer because they are more volatile thus allowing everything defined in the innermost layers to remain valid in the face of technological changes, providing more flexibility to the system.
 
+In cases where inner layers must interact with abstractions defined in upper layers, as defined in the Clean Architecture [article](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html), the principle of **Dependency Inversion** (DIP) is exploited to make dependencies go only inward. Whenever this occurs, an interface is defined in the inner layer that is then implemented in the outer layer. In this way, dependencies remain only inward, without depending on concepts defined in the outer layers.
+
 Accordingly, each module of the application will have the following directory structure:
 ```md
 .
