@@ -88,11 +88,47 @@ application. A module class define providers and inject them into other componen
 
 ### Clean Architecture
 
+Once the various bounded contexts have been identified and designed, it is necessary to proceed with the internal design of each module. \
+In this context, we will be helped by the principles of **Clean Architecture**, defined by _Robert C. Martin_ in this [article](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html).
+
+> Clean architecture is a software design philosophy that separates the elements of a design into ring levels. An important goal of clean architecture is to provide developers with a way to organize code in such a way that it encapsulates the business logic but keeps it separate from the delivery mechanism.
+
+This architecture attempts to integrate some of the leading modern architecture like [Hexagonal Architecture](https://en.wikipedia.org/wiki/Hexagonal_architecture_(software)), [Onion Architecture](http://jeffreypalermo.com/blog/the-onion-architecture-part-1/), [Screaming Architecture](https://blog.cleancoder.com/uncle-bob/2011/09/30/Screaming-Architecture.html) into one main architecture. \
+**NestJS**, with its modular structure and robust features, provides an excellent foundation for applying Clean Architecture principles.
+Since each module corresponds to a different Bounded Context, we are going to apply these principles within each module of the application.
+
 <p align="center">
 <img src="https://raw.githubusercontent.com/andrea-acampora/nestjs-ddd-quickstarter/refs/heads/main/docs/images/clean-architecture.png" height="250" alt="Clean Architecture" />
 <br>
 <sup>Different layers of the Clean Architecture.</sup>
 </p>
+
+In this application, we are going to use these Clean Architecture layers:
+- **Entity Layer**: contains all domain elements. It is the central, most stable and therefore least volatile layer of any module, and the concepts defined within it are completely independent of anything defined in the external layers, resulting in decoupling from the technologies and libraries used.
+- **Use Case Layer**: contains all the use cases of the system. They use only the domain concepts defined in the innermost Entity layer acting as orchestrators of entities encapsulating business policies. They thus allow the details of domain elements to be abstracted behind a coarse-grained API that reflects the system's use cases. This allows unit-testing of system use cases without having dependencies on the infrastructure.
+- **Application layer**: contains the controllers and presenters. The former handle the orchestration of the application flow by managing the interaction between external actors and the business policies defined in the core. They therefore do not represent domain concepts let alone define business rules. The second ones deal with serialization and deserialization, then presentation, of data to the infrastructure layer or use case layer, thus adapting the data to the most convenient format for the layers involved.
+- **Infrastructure layer**: contains all the technological choices of the system. They are confined to the outermost layer because they are more volatile thus allowing everything defined in the innermost layers to remain valid in the face of technological changes, providing more flexibility to the system.
+
+Accordingly, each module of the application will have the following directory structure:
+```md
+.
+└── src
+    ├── app.module.ts
+    ├── main.ts
+    ├── config
+    ├── lib
+    └── modules
+        └── module-x
+            ├── domain
+            ├── usecase
+            ├── application
+            └── infrastructure
+        └── module-y
+            ├── domain
+            ├── usecase
+            ├── application
+            └── infrastructure
+```
 
 ### Functional Programming
 
