@@ -16,6 +16,20 @@ jobs:
       matrix:
         node-version: [ '18.x', '20.x', '22.x' ]
     runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:latest
+        env:
+          POSTGRES_DB: db-test
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
     steps:
       - uses: actions/checkout@v4
         with:
@@ -33,3 +47,11 @@ jobs:
         run: npm run build
       - name: Unit Tests
         run: npm run test
+      - name: E2E Tests
+        run: npm run test:e2e
+        env:
+          DATABASE_NAME: db-test
+          DATABASE_HOST: 127.0.0.1
+          DATABASE_PORT: 15432
+          DATABASE_USER: postgres
+          DATABASE_PASSWORD: postgres
