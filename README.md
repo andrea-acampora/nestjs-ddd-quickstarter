@@ -138,6 +138,26 @@ Accordingly, each module of the application will have the following directory st
 ### Functional Programming
 
 ### Workflow Organization
+In order to make the best use of _DevOps_ practices, it is necessary to adopt an appropriate **Workflow Organization**. \
+In this project we are going to use a custom version of the [Gitflow Workflow]( https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow). \
+Instead of a single `main` branch, this workflow uses two branches to record the history of the project. The `main` branch stores the official release history, and the `develop` branch serves as an integration branch for features. It's also convenient to tag all commits in the main branch with a version number. Each new feature should reside in its own branch, which can be pushed to the central repository for backup/collaboration. But, instead of branching off of main, feature branches use develop as their parent branch. When a feature is complete, it gets merged back into develop. Features should never interact directly with main.
+
+<p align="center">
+<img src="https://raw.githubusercontent.com/andrea-acampora/nestjs-ddd-quickstarter/refs/heads/main/docs/images/git-flow.jpg" height="250" alt="Gitflow Workflow" />
+<br>
+<sup>Gitflow branch structure.</sup>
+</p>
+
+The overall flow of Gitflow is:
+
+1. A develop branch is created from main
+2. Feature branches are created from develop
+3. When a feature is complete it is merged into the develop branch
+4. When we want to trigger a release the develop branch is merged into main
+5. If an issue in main is detected a hotfix branch is created from main
+6. Once the hotfix is complete it is merged to both develop and main
+
+In this project, we are also going to adopt a `rebase` policy instead of a `merge` policy to keep a cleaner and linear project history.
 
 ### Semantic Versioning
 
