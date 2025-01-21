@@ -158,7 +158,7 @@ The `effect-ts` library is a powerful tool for managing functional programming p
 Its core abstractions, such as `Effect`, `Option`, and `Either`, allow developers to build complex applications while maintaining clarity and scalability. Whether handling HTTP requests, database interactions, or background tasks, `effect-ts` simplifies the process of structuring the logic in a way that is predictable, testable, and resilient to failure.
 
 <p align="center">
-<img src="https://raw.githubusercontent.com/andrea-acampora/nestjs-ddd-quickstarter/refs/heads/main/docs/images/effect-code.png" height="250" alt="Effect Code" />
+<img src="https://raw.githubusercontent.com/andrea-acampora/nestjs-ddd-quickstarter/refs/heads/main/docs/images/effect-code.png" height="300" alt="Effect Code" />
 <br>
 <sup>Example of Effect-TS usage.</sup>
 </p>
