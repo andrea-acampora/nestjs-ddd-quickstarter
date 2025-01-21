@@ -1,17 +1,17 @@
 # NestJS Quickstarter
 
-![Build](https://github.com/andrea-acampora/nestjs-ddd-quickstarter/actions/workflows/build.yml/badge.svg)
+[![Build](https://github.com/andrea-acampora/nestjs-ddd-quickstarter/actions/workflows/build.yml/badge.svg)](https://github.com/andrea-acampora/nestjs-ddd-quickstarter/actions/workflows/build.yml)
 [![pages-build-deployment](https://github.com/andrea-acampora/nestjs-ddd-quickstarter/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/andrea-acampora/nestjs-ddd-quickstarter/actions/workflows/pages/pages-build-deployment)
 ![Node Current](https://img.shields.io/node/v/%40nestjs%2Fcore)
 
-![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/andrea-acampora/nestjs-ddd-quickstarter/blob/main/LICENSE)
 [![Semantic Release](https://img.shields.io/badge/semantic--release-angular-e10079?logo=semantic-release)](https://github.com/semantic-release/semantic-release/tree/master)
 [![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-%23FE5196?logo=conventionalcommits&logoColor=white)](https://conventionalcommits.org)
 
-![GitHub Pull Requests](https://img.shields.io/github/issues-pr/andrea-acampora/nestjs-ddd-quickstarter?style=flat&color=cyan)
-![GitHub Issues](https://img.shields.io/github/issues-raw/andrea-acampora/nestjs-ddd-quickstarter?style=flat)
-![GitHub Repo stars](https://img.shields.io/github/stars/andrea-acampora/nestjs-ddd-quickstarter?style=flat&color=yellow)
-![GitHub contributors](https://img.shields.io/github/contributors/andrea-acampora/nestjs-ddd-quickstarter?color=orange)
+[![GitHub Pull Requests](https://img.shields.io/github/issues-pr/andrea-acampora/nestjs-ddd-quickstarter?style=flat&color=cyan)](https://github.com/andrea-acampora/nestjs-ddd-quickstarter/pulls)
+[![GitHub Issues](https://img.shields.io/github/issues-raw/andrea-acampora/nestjs-ddd-quickstarter?style=flat)](https://github.com/andrea-acampora/nestjs-ddd-quickstarter/issues)
+[![GitHub Repo stars](https://img.shields.io/github/stars/andrea-acampora/nestjs-ddd-quickstarter?style=flat&color=yellow)](https://github.com/andrea-acampora/nestjs-ddd-quickstarter/stargazers)
+[![GitHub contributors](https://img.shields.io/github/contributors/andrea-acampora/nestjs-ddd-quickstarter?color=orange)](https://github.com/andrea-acampora/nestjs-ddd-quickstarter/graphs/contributors)
 
 The purpose of this [repository](https://github.com/andrea-acampora/nestjs-ddd-quickstarter) is to create a ready-to-use project following _Domain-Driven Design_, _Clean
 Architecture_ and _Functional Programming_ best practices combined with some _DevOps_ techniques such as _Continuous
@@ -53,13 +53,14 @@ In the following chapters you will find a description of the main choices, techn
 - [Architecture](#architecture)
 - [Domain-Driven Design](#domain-driven-design)
 - [Clean Architecture](#clean-architecture)
-- [Functional Programming](#functional-programming)
 - [Testing](#testing)
+- [Functional Programming](#functional-programming)
+- [Workflow Organization](#workflow-organization)
+- [Semantic Versioning](#semantic-versioning)
 - [Continuous Integration](#continuous-integration)
 - [Continuous Delivery](#continuous-delivery)
 - [Automatic Dependency Update](#automatic-dependency-update)
-- [Automatic API Documentation Generation](#automatic-api-documentation-generation)
-- [Semantic Versioning](#semantic-versioning)
+- [Automatic API Documentation](#automatic-api-documentation)
 - [Backend Best Practices](#backend-best-practices)
 
 ### Architecture
@@ -106,8 +107,10 @@ Since each module corresponds to a different Bounded Context, we are going to ap
 In this application, we are going to use these Clean Architecture layers:
 - **Entity Layer**: contains all domain elements. It is the central, most stable and therefore least volatile layer of any module, and the concepts defined within it are completely independent of anything defined in the external layers, resulting in decoupling from the technologies and libraries used.
 - **Use Case Layer**: contains all the use cases of the system. They use only the domain concepts defined in the innermost Entity layer acting as orchestrators of entities encapsulating business policies. They thus allow the details of domain elements to be abstracted behind a coarse-grained API that reflects the system's use cases. This allows unit-testing of system use cases without having dependencies on the infrastructure.
-- **Application layer**: contains the controllers and presenters. The former handle the orchestration of the application flow by managing the interaction between external actors and the business policies defined in the core. They therefore do not represent domain concepts let alone define business rules. The second ones deal with serialization and deserialization, then presentation, of data to the infrastructure layer or use case layer, thus adapting the data to the most convenient format for the layers involved.
-- **Infrastructure layer**: contains all the technological choices of the system. They are confined to the outermost layer because they are more volatile thus allowing everything defined in the innermost layers to remain valid in the face of technological changes, providing more flexibility to the system.
+- **Application Layer**: contains the controllers and presenters. The former handle the orchestration of the application flow by managing the interaction between external actors and the business policies defined in the core. They therefore do not represent domain concepts let alone define business rules. The second ones deal with serialization and deserialization, then presentation, of data to the infrastructure layer or use case layer, thus adapting the data to the most convenient format for the layers involved.
+- **Infrastructure Layer**: contains all the technological choices of the system. They are confined to the outermost layer because they are more volatile thus allowing everything defined in the innermost layers to remain valid in the face of technological changes, providing more flexibility to the system.
+
+In cases where inner layers must interact with abstractions defined in upper layers, as defined in the Clean Architecture [article](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html), the principle of **Dependency Inversion** (DIP) is exploited to make dependencies go only inward. Whenever this occurs, an interface is defined in the inner layer that is then implemented in the outer layer. In this way, dependencies remain only inward, without depending on concepts defined in the outer layers.
 
 Accordingly, each module of the application will have the following directory structure:
 ```md
@@ -130,9 +133,33 @@ Accordingly, each module of the application will have the following directory st
             └── infrastructure
 ```
 
+### Testing
+
 ### Functional Programming
 
-### Testing
+### Workflow Organization
+In order to make the best use of _DevOps_ practices, it is necessary to adopt an appropriate **Workflow Organization**. \
+In this project we are going to use a custom version of the [Gitflow Workflow]( https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow). \
+Instead of a single `main` branch, this workflow uses two branches to record the history of the project. The `main` branch stores the official release history, and the `develop` branch serves as an integration branch for features. It's also convenient to tag all commits in the main branch with a version number. Each new feature should reside in its own branch, which can be pushed to the central repository for backup/collaboration. But, instead of branching off of main, feature branches use develop as their parent branch. When a feature is complete, it gets merged back into develop. Features should never interact directly with main.
+
+<p align="center">
+<img src="https://raw.githubusercontent.com/andrea-acampora/nestjs-ddd-quickstarter/refs/heads/main/docs/images/git-flow.jpg" height="250" alt="Gitflow Workflow" />
+<br>
+<sup>Gitflow branch structure.</sup>
+</p>
+
+The overall flow of Gitflow is:
+
+1. A develop branch is created from main
+2. Feature branches are created from develop
+3. When a feature is complete it is merged into the develop branch
+4. When we want to trigger a release the develop branch is merged into main
+5. If an issue in main is detected a hotfix branch is created from main
+6. Once the hotfix is complete it is merged to both develop and main
+
+In this project, we are also going to adopt a `rebase` policy instead of a `merge` policy to keep a cleaner and linear project history.
+
+### Semantic Versioning
 
 ### Continuous Integration
 
@@ -140,19 +167,17 @@ Accordingly, each module of the application will have the following directory st
 
 ### Automatic Dependency Update
 
-### Automatic API Documentation Generation
-
-### Semantic Versioning
+### Automatic API Documentation
 
 ### Backend Best Practices
 
-- **Caching**
-- **Data Validation**
-- **Rate Limiting**
-- **API Versioning**
-- **Security**
-- **Logging**
-- **Events**
+### Caching
+### Data Validation
+### Rate Limiting
+### API Versioning
+### Security
+### Logging
+### Events
 
 ## Contributors
 
