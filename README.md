@@ -31,7 +31,6 @@ In the following chapters you will find a description of the main choices, techn
 | [![nodejs](https://deviconapi.vercel.app/nodejs?color=83CD29ff&size=75)](https://nodejs.org/en) | [![typescript](https://deviconapi.vercel.app/typescript?color=007ACCFF&size=75)](https://www.typescriptlang.org) | [![nestjs](https://deviconapi.vercel.app/nestjs?color=DF234FFF&size=75)](https://nestjs.com)  | [![postgresql](https://deviconapi.vercel.app/postgresql?version=plain&color=336791FF&size=75)](https://www.postgresql.org) | [<img src="https://avatars.githubusercontent.com/u/54766168?s=200&v=4" width="75" />](https://mikro-orm.io) | [![docker](https://deviconapi.vercel.app/docker?color=019BC6FF&size=75)](https://www.docker.com) |
 
 ## Instructions
-
 1. Fork this repository and use it as ```template``` repository
 2. Install all dependencies
      ```bash
@@ -60,11 +59,9 @@ In the following chapters you will find a description of the main choices, techn
 - [Continuous Integration](#continuous-integration)
 - [Continuous Delivery](#continuous-delivery)
 - [Automatic Dependency Update](#automatic-dependency-update)
-- [Automatic API Documentation](#automatic-api-documentation)
 - [Backend Best Practices](#backend-best-practices)
 
 ### Architecture
-
 **NestJS** provides a modular architecture that allows the creation of loosely coupled and easily testable components. \
 Although this framework natively supports the development of microservice or event-driven architectures, they will not
 be considered because the purpose of this project is just to create a simple, extensible and ready-to-use application. \
@@ -75,7 +72,6 @@ application into independent modules or components with well-defined boundaries.
 <img src="https://raw.githubusercontent.com/andrea-acampora/nestjs-ddd-quickstarter/refs/heads/main/docs/images/modular-monolith.png" height="250" alt="Modular Monolith Architecture" /><br>
 <sup>Example of a Modular Monolith Architecture.</sup>
 </p>
-
 
 In addition to simplicity and extensibility, a modular monolith allows us to start the development of the application as
 a single repository and deployment unit, with distinct and clear boundaries between business contexts.
@@ -88,7 +84,6 @@ application. A module class define providers and inject them into other componen
 ### Domain-Driven Design
 
 ### Clean Architecture
-
 Once the various bounded contexts have been identified and designed, it is necessary to proceed with the internal design of each module. \
 In this context, we will be helped by the principles of **Clean Architecture**, defined by _Robert C. Martin_ in this [article](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html).
 
@@ -136,7 +131,7 @@ Accordingly, each module of the application will have the following directory st
 ### Testing
 
 ### Functional Programming
-In this section we are going to discuss and to explore some technical choices used in the development of this project, with a focus on **Functional Programming**.
+In this section we are going to discuss and to explore some technical choices used in the development of this project related to functional programming.
 
  > Functional programming is a programming paradigm where programs are constructed by applying and composing functions. It is a declarative programming paradigm in which function definitions are trees of expressions that map values to other values, rather than a sequence of imperative statements which update the running state of the program.
 
@@ -175,7 +170,7 @@ Instead of a single `main` branch, this workflow uses two branches to record the
 <sup>Gitflow branch structure.</sup>
 </p>
 
-The overall flow of Gitflow is:
+The overall flow of **Gitflow** is:
 
 1. A develop branch is created from main
 2. Feature branches are created from develop
@@ -184,19 +179,37 @@ The overall flow of Gitflow is:
 5. If an issue in main is detected a hotfix branch is created from main
 6. Once the hotfix is complete it is merged to both develop and main
 
-In this project, we are also going to adopt a `rebase` policy instead of a `merge` policy to keep a cleaner and linear project history.
+In this project, we are also going to adopt a `rebase` policy instead of a `merge` policy to keep a cleaner and linear project history. \
+In addition, in order to make the meaning of commits more explicit, we are going to adopt the [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) specification, which will simplify the use of automatic tools for application versioning. \
+In order to check the correct use of the _Conventional Commits_ specification and compliance with quality standards on the produced code, we are going to use the following git hooks:
+
+- `pre-commit`: verifies the compliance with quality standards on code using the project linter and running unit tests
+- `commit-msg`: verifies compliance with the _Conventional Commit_ specification
+
+To define and configure the hooks we are going to use the tool [Lefthook](https://lefthook.dev/), which will install the hooks during the `prepare` step of the node project.
 
 ### Semantic Versioning
+> Software versioning is the process of assigning either unique version names or unique version numbers to unique states of computer software. Within a given version number category (e.g., major or minor), these numbers are generally assigned in increasing order and correspond to new developments in the software.
+
+Regarding the versioning process, in this project we are going to follow the [Semantic Versioning](https://semver.org/lang/it/) specification. \
+According to _Semantic Versioning_, a version consists of three numbers: **Major**, **Minor**, and **Patch**. Each change to the source code results in an increase of one of these numbers based on the importance of the changes made. \
+Using the _Conventional Commit_ specification described earlier, it was possible to use the semantics of commits to understand when to make a new release and the importance of it. 
+Accordingly, we are going to use the [Semantic-release-bot](https://github.com/semantic-release/semantic-release), which follows the _Semantic Versioning_ specification, to automate the software release process and changelog generation by analyzing commits in order to identify the correct version increment. For the type of release to be associated with each commit, we are going to use the `semantic-release-preconfigured-conventional-commits` configuration. The bot is triggered upon the push of a commit on the main branch, and if, upon analyzing the commits, a new release needs to be executed, the bot will take care of executing a new release on **Github Release**.
+
 
 ### Continuous Integration
 
 ### Continuous Delivery
 
 ### Automatic Dependency Update
+Keeping dependencies current is one of the most effective security methods available, since it prevents vulnerabilities from entering the code base at the outset. Updating dependencies is a complex task that takes time and often introduces technical debt.
+Especially in a complex dependency tree, it’s difficult to even know what libraries or packages are out of date. Manually looking for updates is time-consuming and unrewarding work. Moreover, updates may not always be compatible with existing code, and without total confidence in merging an update, developers worry that an update will break their app.
 
-### Automatic API Documentation
+In order to automate the update of the project `dependencies`, we are going to use the [Renovate](https://www.mend.io/renovate/) bot. \
+This bot will reduce risk, improve code quality, and cut technical debt by automatically ensuring all dependencies are kept up to date. To do this, the bot will open a new `pull request` on a dedicated `branch` every time it detects a dependency update. This will trigger the running of all Unit and E2E tests in Continuous Integration and if everything is fine then the PR will be automatically merged into the base branch.
 
 ### Backend Best Practices
+In this section we are going to discuss some common backend best practices that we are going to use in this project. Most of them are directly supported by **NestJS** while others will need a custom implementation.
 
 ### Caching
 ### Data Validation
