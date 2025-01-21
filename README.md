@@ -26,14 +26,9 @@ In the following chapters you will find a description of the main choices, techn
 
 ## Stack
 
-[NodeJS](https://nodejs.org/en/) | [TypeScript](https://www.typescriptlang.org/) | [NestJS](https://nestjs.com/) | [PostgreSQL](https://www.postgresql.org/) | [Mikro-ORM](https://mikro-orm.io/) | [Docker](https://www.docker.com/)
-
-[![nodejs](https://deviconapi.vercel.app/nodejs?color=83CD29ff&size=75)](https://nodejs.org/en)
-[![typescript](https://deviconapi.vercel.app/typescript?color=007ACCFF&size=75)](https://www.typescriptlang.org)
-[![nestjs](https://deviconapi.vercel.app/nestjs?color=DF234FFF&size=75)](https://nestjs.com)
-[![postgresql](https://deviconapi.vercel.app/postgresql?version=plain&color=336791FF&size=75)](https://www.postgresql.org)
-[<img src="https://avatars.githubusercontent.com/u/54766168?s=200&v=4" width="75" />](https://mikro-orm.io)
-[![docker](https://deviconapi.vercel.app/docker?color=019BC6FF&size=75)](https://www.docker.com)
+| NodeJS    | TypeScript | NestJS |  PostgreSQL   | Mikro-ORM  | Docker |
+| :---:     | :----:     | :---:  |  :---:        | :----:     | :---:  |
+| [![nodejs](https://deviconapi.vercel.app/nodejs?color=83CD29ff&size=75)](https://nodejs.org/en) | [![typescript](https://deviconapi.vercel.app/typescript?color=007ACCFF&size=75)](https://www.typescriptlang.org) | [![nestjs](https://deviconapi.vercel.app/nestjs?color=DF234FFF&size=75)](https://nestjs.com)  | [![postgresql](https://deviconapi.vercel.app/postgresql?version=plain&color=336791FF&size=75)](https://www.postgresql.org) | [<img src="https://avatars.githubusercontent.com/u/54766168?s=200&v=4" width="75" />](https://mikro-orm.io) | [![docker](https://deviconapi.vercel.app/docker?color=019BC6FF&size=75)](https://www.docker.com) |
 
 ## Instructions
 
