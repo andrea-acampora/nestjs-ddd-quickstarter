@@ -136,6 +136,33 @@ Accordingly, each module of the application will have the following directory st
 ### Testing
 
 ### Functional Programming
+In this section we are going to discuss and to explore some technical choices used in the development of this project, with a focus on **Functional Programming**.
+
+ > Functional programming is a programming paradigm where programs are constructed by applying and composing functions. It is a declarative programming paradigm in which function definitions are trees of expressions that map values to other values, rather than a sequence of imperative statements which update the running state of the program.
+
+Since this is a web server using _NodeJS_ and _TypeScript_, the project will not be fully functional like _Scala_ or _Haskell_ applications. \
+Instead, we will try to apply the following principles belonging to functional programming with the aim of improving the quality of our code:
+
+- **Immutability**: one of the biggest headaches in _JavaScript_ is dealing with state changes and unexpected side effects. With FP principles like immutability, we avoid accidental data mutations. Instead of modifying objects directly, we create new ones. This approach makes our app more predictable and easier to debug. _TypeScript_'s type system helps enforce immutability with tools like readonly and utility types, ensuring your data stay consistent.
+  
+- **Pure Functions**: pure functions always return the same output for the same input and don't mess with the outside world. This predictability makes our code easier to test and reason about. With _TypeScript_, we get an added layer of security by defining precise input and output types.
+  
+- **Higher-Order Functions**: higher-order functions (HOFs) let us write reusable and composable code. They can be used to create reusable abstractions that can simplify complex code and make it easier to understand.
+  
+- **Type Safety**: with _TypeScript_, you catch mistakes before they become runtime issues. FP concepts align perfectly with _TypeScript_'s static typing, reducing the chances of passing around undefined or null by accident.
+
+- **Declarativity**: functional programming encourages writing code that focuses on what should happen rather than how it happens. This leads to cleaner, more readable code, which is easier for us to maintain.
+
+To implement and follow all of these FP principles we are going to use the [Effect-TS](https://github.com/Effect-TS/effect) library, which belongs to the [Effect](https://effect.website/) ecosystem. \
+The `effect-ts` library is a powerful tool for managing functional programming paradigms in a _Node.js_ and _TypeScript_ project. It provides a comprehensive set of utilities for handling side effects, asynchronous operations, and error management in a purely functional and type-safe manner.
+Its core abstractions, such as `Effect`, `Option`, and `Either`, allow developers to build complex applications while maintaining clarity and scalability. Whether handling HTTP requests, database interactions, or background tasks, `effect-ts` simplifies the process of structuring the logic in a way that is predictable, testable, and resilient to failure.
+
+<p align="center">
+<img src="https://raw.githubusercontent.com/andrea-acampora/nestjs-ddd-quickstarter/refs/heads/main/docs/images/effect-code.png" height="250" alt="Effect Code" />
+<br>
+<sup>Example of Effect-TS usage.</sup>
+</p>
+
 
 ### Workflow Organization
 In order to make the best use of _DevOps_ practices, it is necessary to adopt an appropriate **Workflow Organization**. \
