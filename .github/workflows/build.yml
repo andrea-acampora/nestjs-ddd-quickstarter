@@ -52,6 +52,6 @@ jobs:
         env:
           DATABASE_NAME: db-test
           DATABASE_HOST: 127.0.0.1
-          DATABASE_PORT: 15432
+          DATABASE_PORT: 5432
           DATABASE_USER: postgres
           DATABASE_PASSWORD: postgres
