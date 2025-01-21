@@ -53,13 +53,14 @@ In the following chapters you will find a description of the main choices, techn
 - [Architecture](#architecture)
 - [Domain-Driven Design](#domain-driven-design)
 - [Clean Architecture](#clean-architecture)
-- [Functional Programming](#functional-programming)
 - [Testing](#testing)
+- [Functional Programming](#functional-programming)
+- [Workflow Organization](#workflow-organization)
+- [Semantic Versioning](#semantic-versioning)
 - [Continuous Integration](#continuous-integration)
 - [Continuous Delivery](#continuous-delivery)
 - [Automatic Dependency Update](#automatic-dependency-update)
-- [Automatic API Documentation Generation](#automatic-api-documentation-generation)
-- [Semantic Versioning](#semantic-versioning)
+- [Automatic API Documentation](#automatic-api-documentation)
 - [Backend Best Practices](#backend-best-practices)
 
 ### Architecture
@@ -132,9 +133,13 @@ Accordingly, each module of the application will have the following directory st
             └── infrastructure
 ```
 
+### Testing
+
 ### Functional Programming
 
-### Testing
+### Workflow Organization
+
+### Semantic Versioning
 
 ### Continuous Integration
 
@@ -142,19 +147,17 @@ Accordingly, each module of the application will have the following directory st
 
 ### Automatic Dependency Update
 
-### Automatic API Documentation Generation
-
-### Semantic Versioning
+### Automatic API Documentation
 
 ### Backend Best Practices
 
-- **Caching**
-- **Data Validation**
-- **Rate Limiting**
-- **API Versioning**
-- **Security**
-- **Logging**
-- **Events**
+### Caching
+### Data Validation
+### Rate Limiting
+### API Versioning
+### Security
+### Logging
+### Events
 
 ## Contributors
 
