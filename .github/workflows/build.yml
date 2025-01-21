@@ -48,7 +48,10 @@ jobs:
       - name: Unit Tests
         run: npm run test
       - name: E2E Tests
-        run: npm run test:e2e
+        run: |
+          npm run schema:update
+          npm run migrate:up
+          npm run test:e2e
         env:
           DATABASE_NAME: db-test
           DATABASE_HOST: 127.0.0.1
