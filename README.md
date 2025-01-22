@@ -69,7 +69,7 @@ For this reason, we are going to implement a **Modular Monolith**: an architectu
 application into independent modules or components with well-defined boundaries.
 
 <p align="center">
-<img src="https://raw.githubusercontent.com/andrea-acampora/nestjs-ddd-quickstarter/refs/heads/main/docs/images/modular-monolith.png" height="250" alt="Modular Monolith Architecture" /><br>
+<img src="https://raw.githubusercontent.com/andrea-acampora/nestjs-ddd-quickstarter/refs/heads/gh-pages/assets/images/modular-monolith.png" height="250" alt="Modular Monolith Architecture" /><br>
 <sup>Example of a Modular Monolith Architecture.</sup>
 </p>
 
@@ -94,7 +94,7 @@ This architecture attempts to integrate some of the leading modern architecture 
 Since each module corresponds to a different Bounded Context, we are going to apply these principles within each module of the application.
 
 <p align="center">
-<img src="https://raw.githubusercontent.com/andrea-acampora/nestjs-ddd-quickstarter/refs/heads/main/docs/images/clean-architecture.png" height="250" alt="Clean Architecture" />
+<img src="https://raw.githubusercontent.com/andrea-acampora/nestjs-ddd-quickstarter/refs/heads/gh-pages/assets/images/clean-architecture.png" height="250" alt="Clean Architecture" />
 <br>
 <sup>Different layers of the Clean Architecture.</sup>
 </p>
@@ -153,7 +153,7 @@ The `effect-ts` library is a powerful tool for managing functional programming p
 Its core abstractions, such as `Effect`, `Option`, and `Either`, allow developers to build complex applications while maintaining clarity and scalability. Whether handling HTTP requests, database interactions, or background tasks, `effect-ts` simplifies the process of structuring the logic in a way that is predictable, testable, and resilient to failure.
 
 <p align="center">
-<img src="https://raw.githubusercontent.com/andrea-acampora/nestjs-ddd-quickstarter/refs/heads/main/docs/images/effect-code.png" height="300" alt="Effect Code" />
+<img src="https://raw.githubusercontent.com/andrea-acampora/nestjs-ddd-quickstarter/refs/heads/gh-pages/assets/images/effect-code.png" height="300" alt="Effect Code" />
 <br>
 <sup>Example of Effect-TS usage.</sup>
 </p>
@@ -165,7 +165,7 @@ In this project we are going to use a custom version of the [Gitflow Workflow]( 
 Instead of a single `main` branch, this workflow uses two branches to record the history of the project. The `main` branch stores the official release history, and the `develop` branch serves as an integration branch for features. It's also convenient to tag all commits in the main branch with a version number. Each new feature should reside in its own branch, which can be pushed to the central repository for backup/collaboration. But, instead of branching off of main, feature branches use develop as their parent branch. When a feature is complete, it gets merged back into develop. Features should never interact directly with main.
 
 <p align="center">
-<img src="https://raw.githubusercontent.com/andrea-acampora/nestjs-ddd-quickstarter/refs/heads/main/docs/images/git-flow.jpg" height="250" alt="Gitflow Workflow" />
+<img src="https://raw.githubusercontent.com/andrea-acampora/nestjs-ddd-quickstarter/refs/heads/gh-pages/assets/images/git-flow.jpg" height="250" alt="Gitflow Workflow" />
 <br>
 <sup>Gitflow branch structure.</sup>
 </p>
@@ -201,7 +201,7 @@ Accordingly, we are going to use the [Semantic-release-bot](https://github.com/s
 One of the fundamental practices of DevOps is _Continuous Integration_. It aims to continuously integrate code with the main line of development so that integration problems are detected early and software quality is improved by enabling a faster and more reliable development process. 
 
 <p align="center">
-<img src="https://raw.githubusercontent.com/andrea-acampora/nestjs-ddd-quickstarter/refs/heads/main/docs/images/continuous-integration.png" height="250" alt="Continuous Integration" /><br>
+<img src="https://raw.githubusercontent.com/andrea-acampora/nestjs-ddd-quickstarter/refs/heads/gh-pages/assets/images/continuous-integration.png" height="250" alt="Continuous Integration" /><br>
 <sup>Pipeline of Continuous Integration and Delivery.</sup>
 </p>
 
