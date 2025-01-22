@@ -1,3 +1,9 @@
+---
+layout: default
+title: NestJS Quickstarter
+description: Ready-to-use project following Domain-Driven Design, Clean Architecture and Functional Programming best practices, combined with some DevOps techniques such as Continuous Integration, Continuous Delivery and Quality Assurance.
+---
+
 # NestJS Quickstarter
 
 [![Build](https://github.com/andrea-acampora/nestjs-ddd-quickstarter/actions/workflows/build.yml/badge.svg)](https://github.com/andrea-acampora/nestjs-ddd-quickstarter/actions/workflows/build.yml)
