@@ -4,7 +4,7 @@ email: andrea.acampora@protonmail.com
 description: > 
   Ready-to-use project following Domain-Driven Design, Clean Architecture and Functional Programming best practices,
   combined with some DevOps techniques such as Continuous Integration, Continuous Delivery and Quality Assurance.
-repository: "andrea-acampora/nestjs-ddd-quickstarter"
+repository: "https://github.com/andrea-acampora/nestjs-ddd-quickstarter"
 github_username: andrea-acampora
 
 
