@@ -198,6 +198,23 @@ Accordingly, we are going to use the [Semantic-release-bot](https://github.com/s
 
 
 ### Continuous Integration
+One of the fundamental practices of DevOps is _Continuous Integration_. It aims to continuously integrate code with the main line of development so that integration problems are detected early and software quality is improved by enabling a faster and more reliable development process. 
+
+<p align="center">
+<img src="https://raw.githubusercontent.com/andrea-acampora/nestjs-ddd-quickstarter/refs/heads/main/docs/images/continuous-integration.png" height="250" alt="Continuous Integration" /><br>
+<sup>Pipeline of Continuous Integration and Delivery.</sup>
+</p>
+
+In this project we are going to use [Github Actions](https://github.com/features/actions) to create and execute our CI workflows:
+
+- **Build**
+- **Release**
+
+The **Build** workflow consists of running tests and code quality checks on all combinations of operating system and different versions of _NodeJS_ in order to ensure proper performance on all platforms of interest.
+First, we are going to execute the `unit` tests and then, we are going to emulate a real scenario executing a _PostgreSQL_ database instance and running `end-to-end` tests to check the integrity of the application and to prevent regression errors. \
+The workflow is configured to run on pushes or pull request creation. In this way, it is possible to run the tests and provides the results of each test in the pull request, so you can see whether the change in your branch introduces an error. When all CI tests in the `build` workflow pass, the changes we pushed are ready to be reviewed by a team member or merged. When a test fails, one of our changes may have caused the failure.
+
+The **Release** workflow is responsible for running the `semantic release bot` to manage the automatic release of new versions of the software. This workflow is executed only if you are on the `main` branch and if a build workflow has previously completed successfully.
 
 ### Continuous Delivery
 
