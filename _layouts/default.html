@@ -4,57 +4,87 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title> {{ site.title }} </title>
-    <meta name="description" content=" {{site.description}} ">
+    
+    <title>{{ site.title }}</title>
+    <meta name="description" content="{{ site.description }}">
+
     <link rel="icon" href="favicon.png" type="image/x-icon">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css/github-markdown-light.min.css">
+    
     <style>
       body {
-        background-color: white !important;
-        color: black !important;
-        padding-left: 200px !important;
-        padding-right: 200px !important;
+        background-color: #ffffff !important;
+        color: #000000 !important;
+        margin: 0;
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+        padding: 0 10vw !important; 
       }
+
       .markdown-body {
-        background: white !important;
-        color: black !important;
+        background-color: #ffffff !important;
+        color: #000000 !important;
         max-width: 100%;
-        padding-left: 200px !important;
-        padding-right: 200px !important;
+        padding: 2rem 5rem !important;
+        box-sizing: border-box;
       }
-      table,
-      pre,
-      code,
-      blockquote {
-        background-color: #f6f8fa !important; /* Light gray GitHub-style background */
-        color: black !important;
+
+      @media (max-width: 1024px) {
+        body {
+          padding: 0 5vw !important;
+        }
+        .markdown-body {
+          padding: 1rem 2rem !important;
+        }
       }
-    
+
       table {
         border-collapse: collapse;
         border: 1px solid #d0d7de;
-      }
-    
-      th,
-      td {
+        width: 100%;
         background-color: #f6f8fa !important;
-        border: 1px solid #d0d7de;
-        padding: 8px;
       }
-      
+
+      th, td {
+        border: 1px solid #d0d7de;
+        padding: 10px;
+        text-align: left;
+      }
+
+      pre, code {
+        background-color: #f6f8fa !important;
+        color: #000000 !important;
+        font-family: "Courier New", Courier, monospace;
+        border-radius: 4px;
+        padding: 10px;
+        overflow-x: auto;
+      }
+
       blockquote {
         border-left: 4px solid #d0d7de;
-        padding-left: 10px;
+        padding-left: 15px;
         color: #555;
+        font-style: italic;
+      }
+
+      footer {
+        text-align: center;
+        margin-top: 40px;
+        padding: 20px 0;
+        font-size: 0.9rem;
+        color: #777;
       }
     </style>
+
     {% seo %}
   </head>
   <body>
     <main class="markdown-body">
       {{ content | markdownify }}
     </main>
+    
     <footer>
+      &copy; {{ site.time | date: "%Y" }} {{ site.title }}. All rights reserved.
     </footer>
   </body>
 </html>
