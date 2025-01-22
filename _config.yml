@@ -1,11 +1,19 @@
 title: NestsJS Quickstarter
-author: Andrea Acampora
+author:
+  name: Andrea Acampora
+  url: https://github.com/andrea-acampora
+social:
+  name: Andrea Acampora
+  links:
+    - https://www.linkedin.com/in/andrea-acampora-5b3842147
 email: andrea.acampora@protonmail.com
 description: > 
   Ready-to-use project following Domain-Driven Design, Clean Architecture and Functional Programming best practices,
   combined with some DevOps techniques such as Continuous Integration, Continuous Delivery and Quality Assurance.
 repository: "https://github.com/andrea-acampora/nestjs-ddd-quickstarter"
 github_username: andrea-acampora
+keywords: nestjs, ddd, nodejs, dev-ops
+lang: en
 plugins:
   - jekyll-seo-tag
 
