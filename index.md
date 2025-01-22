@@ -1,8 +1,3 @@
----
-layout: default
-title: NestJS Quickstarter
----
-
 [![Build](https://github.com/andrea-acampora/nestjs-ddd-quickstarter/actions/workflows/build.yml/badge.svg)](https://github.com/andrea-acampora/nestjs-ddd-quickstarter/actions/workflows/build.yml)
 [![pages-build-deployment](https://github.com/andrea-acampora/nestjs-ddd-quickstarter/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/andrea-acampora/nestjs-ddd-quickstarter/actions/workflows/pages/pages-build-deployment)
 ![Node Current](https://img.shields.io/node/v/%40nestjs%2Fcore)
