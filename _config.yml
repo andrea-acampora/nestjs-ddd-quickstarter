@@ -6,5 +6,6 @@ description: >
   combined with some DevOps techniques such as Continuous Integration, Continuous Delivery and Quality Assurance.
 repository: "https://github.com/andrea-acampora/nestjs-ddd-quickstarter"
 github_username: andrea-acampora
-
+plugins:
+  - jekyll-seo-tag
 
