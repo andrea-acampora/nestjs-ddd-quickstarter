@@ -1,0 +1,9 @@
+postgresql_volume
+Dockerfile
+.dockerignore
+npm-debug.log
+node_modules
+dist
+*.log
+*.md
+.git

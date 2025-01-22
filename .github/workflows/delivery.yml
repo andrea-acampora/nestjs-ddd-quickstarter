@@ -1,0 +1,39 @@
+name: Delivery
+on:
+  workflow_run:
+    workflows: [ "Release" ]
+    branches: [ main ]
+    types:
+      - completed
+jobs:
+  Delivery:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    name: Delivery
+    runs-on: ubuntu-latest
+    permissions:
+      packages: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Log in to GitHub Container Registry (GHCR)
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+      - name: Extract Release Version
+        id: get_release_version
+        run: |
+          VERSION=$(git describe --tags --abbrev=0)
+          if [ -z "$VERSION" ]; then
+            echo "Error: No tags found in the repository!" && exit 1
+          fi
+          echo "RELEASE_VERSION=$VERSION" >> $GITHUB_ENV
+      - name: Build Docker Image
+        run: |
+          IMAGE_NAME=ghcr.io/${{ github.repository }}
+          docker build -t $IMAGE_NAME:${{ env.RELEASE_VERSION }} .
+          docker tag $IMAGE_NAME:${{ env.RELEASE_VERSION }} $IMAGE_NAME:latest
+      - name: Push Docker Image to GitHub Container Registry (GHCR)
+        run: |
+          IMAGE_NAME=ghcr.io/${{ github.repository }}
+          docker push $IMAGE_NAME:${{ env.RELEASE_VERSION }}
+          docker push $IMAGE_NAME:latest
