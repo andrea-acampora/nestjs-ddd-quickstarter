@@ -8,8 +8,6 @@ RUN npm ci --ignore-scripts
 
 COPY . .
 
-COPY .env ./
-
 ENV NODE_ENV=production
 
 RUN npm run build
