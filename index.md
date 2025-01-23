@@ -162,7 +162,7 @@ The `effect-ts` library is a powerful tool for managing functional programming p
 Its core abstractions, such as `Effect`, `Option`, and `Either`, allow developers to build complex applications while maintaining clarity and scalability. Whether handling HTTP requests, database interactions, or background tasks, `effect-ts` simplifies the process of structuring the logic in a way that is predictable, testable, and resilient to failure.
 
 In the following code snippet you can find an example of `effect-ts` library usage.
-~~~typescript
+~~~ typescript
 import { Option } from "effect"
 
 const computation = (): Option<number> =>
