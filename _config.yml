@@ -17,11 +17,6 @@ keywords: nestjs, ddd, nodejs, dev-ops
 lang: en
 timezone: Europe/Paris
 markdown: kramdown
-highlighter: rouge
-kramdown:
-  input: GFM
-  auto_ids: true
-  syntax_highlighter: rouge
 plugins:
   - jekyll-seo-tag
   - jekyll-sitemap
