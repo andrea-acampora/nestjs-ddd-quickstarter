@@ -155,12 +155,25 @@ To implement and follow all of these FP principles we are going to use the [Effe
 The `effect-ts` library is a powerful tool for managing functional programming paradigms in a _Node.js_ and _TypeScript_ project. It provides a comprehensive set of utilities for handling side effects, asynchronous operations, and error management in a purely functional and type-safe manner.
 Its core abstractions, such as `Effect`, `Option`, and `Either`, allow developers to build complex applications while maintaining clarity and scalability. Whether handling HTTP requests, database interactions, or background tasks, `effect-ts` simplifies the process of structuring the logic in a way that is predictable, testable, and resilient to failure.
 
-<p align="center">
-<img src="https://raw.githubusercontent.com/andrea-acampora/nestjs-ddd-quickstarter/refs/heads/gh-pages/assets/images/effect-code.png" height="300" alt="Effect Code" />
-<br>
-<sup>Example of Effect-TS usage.</sup>
-</p>
+In the following code snippet you can find an example of `effect-ts` library usage.
+```typescript
+import { Option } from "effect"
 
+const computation = (): Option<number> =>
+  Math.random() < 0.5 ? some(10) : none()
+
+const alternativeComputation = (): Option<number> =>
+  Math.random() < 0.5 ? some(20) : none()
+
+const program = computation().pipe(
+  Option.orElse(() => alternativeComputation())
+)
+
+const result = Option.match(program, {
+  onNone: () => "Both computations resulted in None",
+  onSome: (value) => `Computed value: ${value}`
+})
+```
 
 ### Workflow Organization
 In order to make the best use of _DevOps_ practices, it is necessary to adopt an appropriate **Workflow Organization**. \
@@ -246,10 +259,50 @@ In order to automate the update of the project `dependencies`, we are going to u
 This bot will reduce risk, improve code quality, and cut technical debt by automatically ensuring all dependencies are kept up to date. To do this, the bot will open a new `pull request` on a dedicated `branch` every time it detects a dependency update. This will trigger the running of all Unit and E2E tests in Continuous Integration and if everything is fine then the PR will be automatically merged into the base branch.
 
 ### Backend Best Practices
-In this section we are going to discuss some common backend best practices that we are going to use in this project. Most of them are directly supported by **NestJS** while others will need a custom implementation.
+In this section we will discuss some common backend best practices that we will use in this project. Most of them are directly supported by **NestJS** while others will need a custom implementation.
 
 ### Caching
+As reported in the offical NestJS documentation, _Caching_ is a powerful and straightforward technique for enhancing application's performance. By acting as a temporary storage layer, it allows for quicker access to frequently used data, reducing the need to repeatedly fetch or compute the same information. This results in faster response times and improved overall efficiency. \
+In this project, we will use the `@nestjs/cache-manager` package along with the `cache-manager` package. By default, with these packages use a `in-memory` strategy so everything is stored in the memory of the application.
+In this way, if the project grows, it will be possible to use an advanced solution and a dedicated database such as [Redis](https://redis.io/) as it is fully supported by the `@nestjs/cache-manager`. \
+If you want to deep dive and to understand in detail how this tool works, please refer to the official [documentation](https://docs.nestjs.com/techniques/caching#caching).
+
 ### Data Validation
+Data validation is one of the most crucial steps in building a robust backend system ensuring data flowing through the system is accurate, consistent, and adheres to predefined formats. By introducing data validation invalid or malicious data gets filtered out before it can impact your system.\
+In this project, to implement data validation we will use `class-validator` and `class-transformer` packages.
+
+We start by binding `ValidationPipe` at the application level, thus ensuring all endpoints are protected from receiving incorrect data.
+```typescript
+  app.useGlobalPipes(
+    new ValidationPipe({
+      transform: true,
+      whitelist: true,
+      forbidNonWhitelisted: true,
+    }),
+  );
+```
+
+The `whitelist` property is set to true to ensure that the validator will strip validated object of any properties that do not have any decorators. In this case, we can whitelist the acceptable properties, and any property not included in the whitelist is automatically stripped from the resulting object.\
+Alternatively, if we want to stop the request from processing when non-whitelisted properties are present, we have to set the `forbidNonWhitelisted` option property to true, in combination with setting whitelist to true.
+To enable auto-transformation of payloads to typed objects according to their DTO classes, we have to se the `transform` option property to true.
+Since _TypeScript_ does not store metadata about generics or interfaces, when you use them in your DTOs, ValidationPipe may not be able to properly validate incoming data. For this reason, consider using concrete classes in your DTOs.
+
+Once the _Validation Pipe_ is registered globally, we can start to add some valdiation rules to our dtos.
+```typescript
+import { IsEmail, IsNotEmpty } from 'class-validator';
+
+export class CreateUserDto {
+  @IsEmail()
+  email: string;
+
+  @IsNotEmpty()
+  password: string;
+}
+
+```
+
+If you want to deep dive and to understand in detail how this tool works, please refer to the official [documentation](https://docs.nestjs.com/techniques/validation).
+
 ### Rate Limiting
 ### API Versioning
 ### Security
