@@ -33,9 +33,9 @@ import { HealthModule } from './modules/health/health.module';
     }),
     ThrottlerModule.forRoot([
       {
-        name: 'TWENTY_CALL_PER_MINUTE',
+        name: '100_CALL_PER_MINUTE',
         ttl: 60000,
-        limit: 180,
+        limit: 100,
       },
     ]),
     EventEmitterModule.forRoot(),
