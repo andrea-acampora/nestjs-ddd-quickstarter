@@ -12,12 +12,15 @@ description: >
   combined with some DevOps techniques such as Continuous Integration, Continuous Delivery and Quality Assurance.
 repository: "https://github.com/andrea-acampora/nestjs-ddd-quickstarter"
 github_username: andrea-acampora
+base_url: ""
 keywords: nestjs, ddd, nodejs, dev-ops
 lang: en
 timezone: Europe/Paris
 markdown: kramdown
+highlighter: rouge
 kramdown:
   input: GFM
+  auto_ids: true
   syntax_highlighter: rouge
 plugins:
   - jekyll-seo-tag
