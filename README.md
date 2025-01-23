@@ -138,6 +138,87 @@ Accordingly, each module of the application will have the following directory st
 ----
 
 ### Testing
+Testing is an important process in the software development lifecycle. It involves verifying and validating that a software application is free of bugs, meets the technical requirements set by its design and development, and satisfies user requirements efficiently and effectively. 
+
+In this project we will implement two different types of tests:
+
+- **Unit Tests**: unit tests are very low level and close to the source of an application. They consist in testing individual methods and functions of the classes, components, or modules used by your software. They are generally quite cheap to automate and can run very quickly by a continuous integration server.
+  
+- **End-to-end Tests**: end-to-end testing replicates a user behavior with the software in a complete application environment. It verifies that various user flows work as expected and can be as simple as loading a web page or logging in or much more complex scenarios verifying email notifications, online payments, etc...
+
+To automate the execution of the tests we will run them inside a _Continuous Integration_ pipeline, which will be explained in the next chapters.
+
+**Unit Testing**
+
+In this project, to implement Unit Tests we will use the following packages:
+
+- `@nestjs/testing`: provides a set of utilities that enable a more robust testing process.
+- `jest`: serves as a test-runner and also provides assert functions and test-double utilities that help with mocking, spying, etc.
+
+In the following code block it's possible to see an example of unit testing with [Jest](https://github.com/facebook/jest) library:
+
+```typescript
+describe('CatsController', () => {
+  let catsController: CatsController;
+  let catsService: CatsService;
+
+  beforeEach(() => {
+    catsService = new CatsService();
+    catsController = new CatsController(catsService);
+  });
+
+  describe('findAll', () => {
+    it('should return an array of cats', async () => {
+      const result = ['test'];
+      jest.spyOn(catsService, 'findAll').mockImplementation(() => result);
+      expect(await catsController.findAll()).toBe(result);
+    });
+  });
+});
+```
+
+_Unit tests_ will be run with this command:
+
+```bash
+
+npm run test
+
+```
+
+**End-to-end Testing**
+
+In this project, to implement E2E Tests we will use the following packages:
+
+- `@nestjs/testing`: provides a set of utilities that enable a more robust testing process.
+- `supertest`: serves as a test-runner and also provides assert functions and test-double utilities that help with mocking, spying, etc.
+
+In the following code block it's possible to see an example of end-to-end testing with [Supertest](https://github.com/visionmedia/supertest) library:
+
+```typescript
+describe('HealthCheck (E2E)', () => {
+  let app: INestApplication;
+
+  beforeEach(async () => {
+    const moduleFixture: TestingModule = await Test.createTestingModule({
+      imports: [AppModule],
+    }).compile();
+    app = moduleFixture.createNestApplication();
+    await app.init();
+  });
+
+  it('should always return 200', () => {
+    return request(app.getHttpServer()).get('/health').expect(200);
+  });
+});
+```
+
+_E2E tests_ will be run with this command:
+
+```bash
+
+npm run test:e2e
+
+```
 
 ---
 
