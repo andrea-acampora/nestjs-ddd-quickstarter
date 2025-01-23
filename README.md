@@ -213,13 +213,30 @@ In this project we are going to use [Github Actions](https://github.com/features
 - **Build**
 - **Release**
 
-The **Build** workflow consists of running tests and code quality checks on all combinations of operating system and different versions of _NodeJS_ in order to ensure proper performance on all platforms of interest.
+The [**Build**](https://github.com/andrea-acampora/nestjs-ddd-quickstarter/blob/main/.github/workflows/build.yml) workflow consists of running tests and code quality checks on all combinations of operating system and different versions of _NodeJS_ in order to ensure proper performance on all platforms of interest.
 First, we are going to execute the `unit` tests and then, we are going to emulate a real scenario executing a _PostgreSQL_ database instance and running `end-to-end` tests to check the integrity of the application and to prevent regression errors. \
 The workflow is configured to run on pushes or pull request creation. In this way, it is possible to run the tests and provides the results of each test in the pull request, so you can see whether the change in your branch introduces an error. When all CI tests in the `build` workflow pass, the changes we pushed are ready to be reviewed by a team member or merged. When a test fails, one of our changes may have caused the failure.
 
-The **Release** workflow is responsible for running the `semantic release bot` to manage the automatic release of new versions of the software. This workflow is executed only if you are on the `main` branch and if a build workflow has previously completed successfully.
+The [**Release**](https://github.com/andrea-acampora/nestjs-ddd-quickstarter/blob/main/.github/workflows/release.yml) workflow is responsible for running the `semantic release bot` to manage the automatic release of new versions of the software. This workflow is executed only if you are on the `main` branch and if a build workflow has previously completed successfully.
 
 ### Continuous Delivery
+Continuous Delivery (CD) is a software development practice that enables teams to release new features, updates, and bug fixes to production environments rapidly, reliably, and sustainably. The primary goal of CD is to minimize the time between writing code and delivering it to users, while ensuring high quality and stability. \
+In this project, the **Continuous Delivery** workflow is built using **GitHub Actions** and **Docker** and it runs on a _Continuous Integration_ environment. \
+The [workflow](https://github.com/andrea-acampora/nestjs-ddd-quickstarter/blob/main/.github/workflows/delivery.yml) is realized in the following way:
+
+1. **Automated Workflow with GitHub Actions**: the workflow is triggered automatically when a successful `Release` job is completed, ensuring only tested and verified code gets delivered. We use conditional execution to ensure that deployment only happens if the previous workflow (Release) succeeds.
+2. **Versioning**: we extract version tags using `git describe --tags --abbrev=0`, making sure each _Docker_ image is tagged correctly. This approach makes rollback, tracking, and auditing deployments very easy.
+3. **Docker Containerization**: we build the _Docker_ image of the application using a custom `Dockerfile`. The Dockerfile follows best practices by installing dependencies, running the build, and handling migrations and database schema creation on startup.
+4. **Deployment to GitHub Container Registry (GHCR)**: we securely login to GHCR using secrets, ensuring that credentials stay protected. Then we tag both `versioned` and `latest` container images to allows flexibility and rollback strategies.
+
+At the end of the workflow, if all the steps are successful, we can find the docker image of the application on [GitHub Packages](https://github.com/andrea-acampora?tab=packages&repo_name=nestjs-ddd-quickstarter). \
+So, you can download it and run it in this way:
+
+```bash
+docker run -p 3000:3000 --env-file .env ghcr.io/andrea-acampora/nestjs-ddd-quickstarter:latest
+```
+
+Remember that you need to provide a `.env` file with all database connection variables. Alternatively, you can create a `docker-compose` file with a _PostgreSQL_ service and a service containing the image you just created so that the app and database can communicate via an internal network.
 
 ### Automatic Dependency Update
 Keeping dependencies current is one of the most effective security methods available, since it prevents vulnerabilities from entering the code base at the outset. Updating dependencies is a complex task that takes time and often introduces technical debt.
