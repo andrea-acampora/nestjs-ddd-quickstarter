@@ -15,8 +15,10 @@ github_username: andrea-acampora
 keywords: nestjs, ddd, nodejs, dev-ops
 lang: en
 timezone: Europe/Paris
-highlighter: rouge
 markdown: kramdown
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
 plugins:
   - jekyll-seo-tag
   - jekyll-sitemap
