@@ -1,17 +1,20 @@
 # NestJS Quickstarter
 
 [![Build](https://github.com/andrea-acampora/nestjs-ddd-quickstarter/actions/workflows/build.yml/badge.svg)](https://github.com/andrea-acampora/nestjs-ddd-quickstarter/actions/workflows/build.yml)
-[![pages-build-deployment](https://github.com/andrea-acampora/nestjs-ddd-quickstarter/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/andrea-acampora/nestjs-ddd-quickstarter/actions/workflows/pages/pages-build-deployment)
-![Node Current](https://img.shields.io/node/v/%40nestjs%2Fcore)
+[![Release](https://github.com/andrea-acampora/nestjs-ddd-quickstarter/actions/workflows/release.yml/badge.svg)](https://github.com/andrea-acampora/nestjs-ddd-quickstarter/actions/workflows/release.yml)
+[![Delivery](https://github.com/andrea-acampora/nestjs-ddd-quickstarter/actions/workflows/delivery.yml/badge.svg)](https://github.com/andrea-acampora/nestjs-ddd-quickstarter/actions/workflows/delivery.yml)
 
-[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/andrea-acampora/nestjs-ddd-quickstarter/blob/main/LICENSE)
-[![Semantic Release](https://img.shields.io/badge/semantic--release-angular-e10079?logo=semantic-release)](https://github.com/semantic-release/semantic-release/tree/master)
+[![pages-build-deployment](https://github.com/andrea-acampora/nestjs-ddd-quickstarter/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/andrea-acampora/nestjs-ddd-quickstarter/actions/workflows/pages/pages-build-deployment)
+![Node Current](https://img.shields.io/node/v/%40nestjs%2Fcore?logo=github&color=blue)
+
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg?logo=github)](https://github.com/andrea-acampora/nestjs-ddd-quickstarter/blob/main/LICENSE)
+[![Semantic Release](https://img.shields.io/badge/semantic--release-angular-e10079?logo=semantic-release&color=violet)](https://github.com/semantic-release/semantic-release/tree/master)
 [![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-%23FE5196?logo=conventionalcommits&logoColor=white)](https://conventionalcommits.org)
 
-[![GitHub Pull Requests](https://img.shields.io/github/issues-pr/andrea-acampora/nestjs-ddd-quickstarter?style=flat&color=cyan)](https://github.com/andrea-acampora/nestjs-ddd-quickstarter/pulls)
-[![GitHub Issues](https://img.shields.io/github/issues-raw/andrea-acampora/nestjs-ddd-quickstarter?style=flat)](https://github.com/andrea-acampora/nestjs-ddd-quickstarter/issues)
-[![GitHub Repo stars](https://img.shields.io/github/stars/andrea-acampora/nestjs-ddd-quickstarter?style=flat&color=yellow)](https://github.com/andrea-acampora/nestjs-ddd-quickstarter/stargazers)
-[![GitHub contributors](https://img.shields.io/github/contributors/andrea-acampora/nestjs-ddd-quickstarter?color=orange)](https://github.com/andrea-acampora/nestjs-ddd-quickstarter/graphs/contributors)
+[![GitHub Pull Requests](https://img.shields.io/github/issues-pr-raw/andrea-acampora/nestjs-ddd-quickstarter?color=cyan&logo=github)]()
+[![GitHub Issues](https://img.shields.io/github/issues-raw/andrea-acampora/nestjs-ddd-quickstarter?style=flat&logo=github)](https://github.com/andrea-acampora/nestjs-ddd-quickstarter/issues)
+[![GitHub Repo stars](https://img.shields.io/github/stars/andrea-acampora/nestjs-ddd-quickstarter?style=flat&color=yellow&logo=github)](https://github.com/andrea-acampora/nestjs-ddd-quickstarter/stargazers)
+[![GitHub contributors](https://img.shields.io/github/contributors/andrea-acampora/nestjs-ddd-quickstarter?color=orange&logo=github)](https://github.com/andrea-acampora/nestjs-ddd-quickstarter/graphs/contributors)
 
 The purpose of this [repository](https://github.com/andrea-acampora/nestjs-ddd-quickstarter) is to create a ready-to-use project following _Domain-Driven Design_, _Clean
 Architecture_ and _Functional Programming_ best practices combined with some _DevOps_ techniques such as _Continuous
