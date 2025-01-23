@@ -84,7 +84,11 @@ In **NestJS**, applications typically consists of multiple modules, each serving
 A module is a class annotated with the `@Module()` decorator, and it encapsulates a specific domain or feature of the
 application. A module class define providers and inject them into other components leveraging **Dependency Injection**.
 
+---
+
 ### Domain-Driven Design
+
+---
 
 ### Clean Architecture
 Once the various bounded contexts have been identified and designed, it is necessary to proceed with the internal design of each module. \
@@ -131,7 +135,11 @@ Accordingly, each module of the application will have the following directory st
             └── infrastructure
 ```
 
+----
+
 ### Testing
+
+---
 
 ### Functional Programming
 In this section we are going to discuss and to explore some technical choices used in the development of this project related to functional programming.
@@ -175,6 +183,8 @@ const result = Option.match(program, {
 })
 ```
 
+---
+
 ### Workflow Organization
 In order to make the best use of _DevOps_ practices, it is necessary to adopt an appropriate **Workflow Organization**. \
 In this project we are going to use a custom version of the [Gitflow Workflow]( https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow). \
@@ -204,6 +214,8 @@ In order to check the correct use of the _Conventional Commits_ specification an
 
 To define and configure the hooks we are going to use the tool [Lefthook](https://lefthook.dev/), which will install the hooks during the `prepare` step of the node project.
 
+---
+
 ### Semantic Versioning
 > Software versioning is the process of assigning either unique version names or unique version numbers to unique states of computer software. Within a given version number category (e.g., major or minor), these numbers are generally assigned in increasing order and correspond to new developments in the software.
 
@@ -212,6 +224,7 @@ According to _Semantic Versioning_, a version consists of three numbers: **Major
 Using the _Conventional Commit_ specification described earlier, it was possible to use the semantics of commits to understand when to make a new release and the importance of it. 
 Accordingly, we are going to use the [Semantic-release-bot](https://github.com/semantic-release/semantic-release), which follows the _Semantic Versioning_ specification, to automate the software release process and changelog generation by analyzing commits in order to identify the correct version increment. For the type of release to be associated with each commit, we are going to use the `semantic-release-preconfigured-conventional-commits` configuration. The bot is triggered upon the push of a commit on the main branch, and if, upon analyzing the commits, a new release needs to be executed, the bot will take care of executing a new release on **Github Release**.
 
+---
 
 ### Continuous Integration
 One of the fundamental practices of DevOps is _Continuous Integration_. It aims to continuously integrate code with the main line of development so that integration problems are detected early and software quality is improved by enabling a faster and more reliable development process. 
@@ -232,6 +245,8 @@ The workflow is configured to run on pushes or pull request creation. In this wa
 
 The [**Release**](https://github.com/andrea-acampora/nestjs-ddd-quickstarter/blob/main/.github/workflows/release.yml) workflow is responsible for running the `semantic release bot` to manage the automatic release of new versions of the software. This workflow is executed only if you are on the `main` branch and if a build workflow has previously completed successfully.
 
+---
+
 ### Continuous Delivery
 Continuous Delivery (CD) is a software development practice that enables teams to release new features, updates, and bug fixes to production environments rapidly, reliably, and sustainably. The primary goal of CD is to minimize the time between writing code and delivering it to users, while ensuring high quality and stability. \
 In this project, the **Continuous Delivery** workflow is built using **GitHub Actions** and **Docker** and it runs on a _Continuous Integration_ environment. \
@@ -251,12 +266,16 @@ docker run -p 3000:3000 --env-file .env ghcr.io/andrea-acampora/nestjs-ddd-quick
 
 Remember that you need to provide a `.env` file with all database connection variables. Alternatively, you can create a `docker-compose` file with a _PostgreSQL_ service and a service containing the image you just created so that the app and database can communicate via an internal network.
 
+---
+
 ### Automatic Dependency Update
 Keeping dependencies current is one of the most effective security methods available, since it prevents vulnerabilities from entering the code base at the outset. Updating dependencies is a complex task that takes time and often introduces technical debt.
 Especially in a complex dependency tree, it’s difficult to even know what libraries or packages are out of date. Manually looking for updates is time-consuming and unrewarding work. Moreover, updates may not always be compatible with existing code, and without total confidence in merging an update, developers worry that an update will break their app.
 
 In order to automate the update of the project `dependencies`, we are going to use the [Renovate](https://www.mend.io/renovate/) bot. \
 This bot will reduce risk, improve code quality, and cut technical debt by automatically ensuring all dependencies are kept up to date. To do this, the bot will open a new `pull request` on a dedicated `branch` every time it detects a dependency update. This will trigger the running of all Unit and E2E tests in Continuous Integration and if everything is fine then the PR will be automatically merged into the base branch.
+
+---
 
 ### Backend Best Practices
 In this section we will discuss some common backend best practices that we will use in this project. Most of them are directly supported by **NestJS** while others will need a custom implementation.
@@ -353,6 +372,7 @@ In addition to the global configuration, it is also possible to specify the vers
 
 If you want to deep dive and to understand in detail how this tool works, please refer to the official [documentation](https://docs.nestjs.com/techniques/versioning).
 
+---
 
 ## Contributors
 
