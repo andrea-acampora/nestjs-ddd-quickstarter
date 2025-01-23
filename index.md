@@ -162,7 +162,7 @@ The `effect-ts` library is a powerful tool for managing functional programming p
 Its core abstractions, such as `Effect`, `Option`, and `Either`, allow developers to build complex applications while maintaining clarity and scalability. Whether handling HTTP requests, database interactions, or background tasks, `effect-ts` simplifies the process of structuring the logic in a way that is predictable, testable, and resilient to failure.
 
 In the following code snippet you can find an example of `effect-ts` library usage.
-~~~ typescript
+```typescript
 import { Option } from "effect"
 
 const computation = (): Option<number> =>
@@ -179,7 +179,7 @@ const result = Option.match(program, {
   onNone: () => "Both computations resulted in None",
   onSome: (value) => `Computed value: ${value}`
 })
-~~~
+```
 
 ### Workflow Organization
 In order to make the best use of _DevOps_ practices, it is necessary to adopt an appropriate **Workflow Organization**. \
@@ -310,10 +310,55 @@ export class CreateUserDto {
 If you want to deep dive and to understand in detail how this tool works, please refer to the official [documentation](https://docs.nestjs.com/techniques/validation).
 
 ### Rate Limiting
+Rate limiting is a set of measures put in place to help ensure the stability and performance of an API system. It works by setting limits on how many requests can be made within a certain period of time — usually a few seconds or minutes — and what actions can be taken.
+If too many requests are made over that period, the API system will return an error message telling you that the rate limit has been exceeded.
+Additionally, rate limiting can help prevent attacks that aim to overwhelm the system, such as DoS attacks, brute force attempts, and API abuse. and also can help businesses save on costs associated with managing an API system.
+
+In this project we will use the `@nestjs/throttler` package.
+
+```typescript
+@Module({
+  imports: [
+    ThrottlerModule.forRoot([{
+      name: '100_CALL_PER_MINUTE',
+      ttl: 60000,
+      limit: 100,
+    }]),
+  ],
+})
+export class AppModule {}
+
+```
+
+With this configuration we set a maximum of 100 requests per IP address in a 60-seconds interval.
+
+If you want to deep dive and to understand in detail how this tool works, please refer to the official [documentation](https://docs.nestjs.com/security/rate-limiting).
+
 ### API Versioning
-### Security
-### Logging
-### Events
+API versioning is the practice of transparently managing changes to your API. You should version your API whenever you make a change that will require consumers to modify their codebase in order to continue using the API. This type of change is known as a “breaking change,” and it can be made to an API's input and output data structures, success and error feedback, and security mechanisms. \
+There are several approaches to API versioning, including:
+
+- **URI Versioning**
+- **Query Parameter Versioning**
+- **Header versioning**
+- **Consumer-based versioning**
+
+In this project we will enable _URI versioning_ globally, in the following way:
+
+```typescript
+
+  app.enableVersioning({
+    type: VersioningType.URI,
+    defaultVersion: '1',
+  });
+
+```
+
+The version in the URI will be automatically prefixed with v by default, however the prefix value can be configured by setting the prefix key to your desired prefix or false if you wish to disable it. \
+In addition to the global configuration, it is also possible to specify the version of individual routes or controllers. In this case, this version will override any other version that would effect the route.
+
+If you want to deep dive and to understand in detail how this tool works, please refer to the official [documentation](https://docs.nestjs.com/techniques/versioning).
+
 
 ## Contributors
 
