@@ -7,17 +7,20 @@ description: Ready-to-use project following Domain-Driven Design, Clean Architec
 # NestJS Quickstarter
 
 [![Build](https://github.com/andrea-acampora/nestjs-ddd-quickstarter/actions/workflows/build.yml/badge.svg)](https://github.com/andrea-acampora/nestjs-ddd-quickstarter/actions/workflows/build.yml)
-[![pages-build-deployment](https://github.com/andrea-acampora/nestjs-ddd-quickstarter/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/andrea-acampora/nestjs-ddd-quickstarter/actions/workflows/pages/pages-build-deployment)
-![Node Current](https://img.shields.io/node/v/%40nestjs%2Fcore)
+[![Release](https://github.com/andrea-acampora/nestjs-ddd-quickstarter/actions/workflows/release.yml/badge.svg)](https://github.com/andrea-acampora/nestjs-ddd-quickstarter/actions/workflows/release.yml)
+[![Delivery](https://github.com/andrea-acampora/nestjs-ddd-quickstarter/actions/workflows/delivery.yml/badge.svg)](https://github.com/andrea-acampora/nestjs-ddd-quickstarter/actions/workflows/delivery.yml)
 
-[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/andrea-acampora/nestjs-ddd-quickstarter/blob/main/LICENSE)
-[![Semantic Release](https://img.shields.io/badge/semantic--release-angular-e10079?logo=semantic-release)](https://github.com/semantic-release/semantic-release/tree/master)
+[![pages-build-deployment](https://github.com/andrea-acampora/nestjs-ddd-quickstarter/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/andrea-acampora/nestjs-ddd-quickstarter/actions/workflows/pages/pages-build-deployment)
+![Node Current](https://img.shields.io/node/v/%40nestjs%2Fcore?logo=github&color=blue)
+
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg?logo=github)](https://github.com/andrea-acampora/nestjs-ddd-quickstarter/blob/main/LICENSE)
+[![Semantic Release](https://img.shields.io/badge/semantic--release-angular-e10079?logo=semantic-release&color=violet)](https://github.com/semantic-release/semantic-release/tree/master)
 [![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-%23FE5196?logo=conventionalcommits&logoColor=white)](https://conventionalcommits.org)
 
-[![GitHub Pull Requests](https://img.shields.io/github/issues-pr/andrea-acampora/nestjs-ddd-quickstarter?style=flat&color=cyan)](https://github.com/andrea-acampora/nestjs-ddd-quickstarter/pulls)
-[![GitHub Issues](https://img.shields.io/github/issues-raw/andrea-acampora/nestjs-ddd-quickstarter?style=flat)](https://github.com/andrea-acampora/nestjs-ddd-quickstarter/issues)
-[![GitHub Repo stars](https://img.shields.io/github/stars/andrea-acampora/nestjs-ddd-quickstarter?style=flat&color=yellow)](https://github.com/andrea-acampora/nestjs-ddd-quickstarter/stargazers)
-[![GitHub contributors](https://img.shields.io/github/contributors/andrea-acampora/nestjs-ddd-quickstarter?color=orange)](https://github.com/andrea-acampora/nestjs-ddd-quickstarter/graphs/contributors)
+[![GitHub Pull Requests](https://img.shields.io/github/issues-pr-raw/andrea-acampora/nestjs-ddd-quickstarter?color=cyan&logo=github)]()
+[![GitHub Issues](https://img.shields.io/github/issues-raw/andrea-acampora/nestjs-ddd-quickstarter?style=flat&logo=github)](https://github.com/andrea-acampora/nestjs-ddd-quickstarter/issues)
+[![GitHub Repo stars](https://img.shields.io/github/stars/andrea-acampora/nestjs-ddd-quickstarter?style=flat&color=yellow&logo=github)](https://github.com/andrea-acampora/nestjs-ddd-quickstarter/stargazers)
+[![GitHub contributors](https://img.shields.io/github/contributors/andrea-acampora/nestjs-ddd-quickstarter?color=orange&logo=github)](https://github.com/andrea-acampora/nestjs-ddd-quickstarter/graphs/contributors)
 
 The purpose of this [repository](https://github.com/andrea-acampora/nestjs-ddd-quickstarter) is to create a ready-to-use project following _Domain-Driven Design_, _Clean
 Architecture_ and _Functional Programming_ best practices combined with some _DevOps_ techniques such as _Continuous
@@ -216,13 +219,30 @@ In this project we are going to use [Github Actions](https://github.com/features
 - **Build**
 - **Release**
 
-The **Build** workflow consists of running tests and code quality checks on all combinations of operating system and different versions of _NodeJS_ in order to ensure proper performance on all platforms of interest.
+The [**Build**](https://github.com/andrea-acampora/nestjs-ddd-quickstarter/blob/main/.github/workflows/build.yml) workflow consists of running tests and code quality checks on all combinations of operating system and different versions of _NodeJS_ in order to ensure proper performance on all platforms of interest.
 First, we are going to execute the `unit` tests and then, we are going to emulate a real scenario executing a _PostgreSQL_ database instance and running `end-to-end` tests to check the integrity of the application and to prevent regression errors. \
 The workflow is configured to run on pushes or pull request creation. In this way, it is possible to run the tests and provides the results of each test in the pull request, so you can see whether the change in your branch introduces an error. When all CI tests in the `build` workflow pass, the changes we pushed are ready to be reviewed by a team member or merged. When a test fails, one of our changes may have caused the failure.
 
-The **Release** workflow is responsible for running the `semantic release bot` to manage the automatic release of new versions of the software. This workflow is executed only if you are on the `main` branch and if a build workflow has previously completed successfully.
+The [**Release**](https://github.com/andrea-acampora/nestjs-ddd-quickstarter/blob/main/.github/workflows/release.yml) workflow is responsible for running the `semantic release bot` to manage the automatic release of new versions of the software. This workflow is executed only if you are on the `main` branch and if a build workflow has previously completed successfully.
 
 ### Continuous Delivery
+Continuous Delivery (CD) is a software development practice that enables teams to release new features, updates, and bug fixes to production environments rapidly, reliably, and sustainably. The primary goal of CD is to minimize the time between writing code and delivering it to users, while ensuring high quality and stability. \
+In this project, the **Continuous Delivery** workflow is built using **GitHub Actions** and **Docker** and it runs on a _Continuous Integration_ environment. \
+The [workflow](https://github.com/andrea-acampora/nestjs-ddd-quickstarter/blob/main/.github/workflows/delivery.yml) is realized in the following way:
+
+1. **Automated Workflow with GitHub Actions**: the workflow is triggered automatically when a successful `Release` job is completed, ensuring only tested and verified code gets delivered. We use conditional execution to ensure that deployment only happens if the previous workflow (Release) succeeds.
+2. **Versioning**: we extract version tags using `git describe --tags --abbrev=0`, making sure each _Docker_ image is tagged correctly. This approach makes rollback, tracking, and auditing deployments very easy.
+3. **Docker Containerization**: we build the _Docker_ image of the application using a custom `Dockerfile`. The Dockerfile follows best practices by installing dependencies, running the build, and handling migrations and database schema creation on startup.
+4. **Deployment to GitHub Container Registry (GHCR)**: we securely login to GHCR using secrets, ensuring that credentials stay protected. Then we tag both `versioned` and `latest` container images to allows flexibility and rollback strategies.
+
+At the end of the workflow, if all the steps are successful, we can find the docker image of the application on [GitHub Packages](https://github.com/andrea-acampora?tab=packages&repo_name=nestjs-ddd-quickstarter). \
+So, you can download it and run it in this way:
+
+```bash
+docker run -p 3000:3000 --env-file .env ghcr.io/andrea-acampora/nestjs-ddd-quickstarter:latest
+```
+
+Remember that you need to provide a `.env` file with all database connection variables. Alternatively, you can create a `docker-compose` file with a _PostgreSQL_ service and a service containing the image you just created so that the app and database can communicate via an internal network.
 
 ### Automatic Dependency Update
 Keeping dependencies current is one of the most effective security methods available, since it prevents vulnerabilities from entering the code base at the outset. Updating dependencies is a complex task that takes time and often introduces technical debt.
