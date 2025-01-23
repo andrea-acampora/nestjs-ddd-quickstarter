@@ -31,7 +31,7 @@ In the following chapters you will find a description of the main choices, techn
 
 | NodeJS    | TypeScript | NestJS |  PostgreSQL   | Mikro-ORM  | Docker |
 | :---:     | :----:     | :---:  |  :---:        | :----:     | :---:  |
-| [![nodejs](https://deviconapi.vercel.app/nodejs?color=83CD29ff&size=75)](https://nodejs.org/en) | [![typescript](https://deviconapi.vercel.app/typescript?color=007ACCFF&size=75)](https://www.typescriptlang.org) | [![nestjs](https://deviconapi.vercel.app/nestjs?color=DF234FFF&size=75)](https://nestjs.com)  | [![postgresql](https://deviconapi.vercel.app/postgresql?version=plain&color=336791FF&size=75)](https://www.postgresql.org) | [<img src="https://avatars.githubusercontent.com/u/54766168?s=200&v=4" width="75" />](https://mikro-orm.io) | [![docker](https://deviconapi.vercel.app/docker?color=019BC6FF&size=75)](https://www.docker.com) |
+| [<img src="https://deviconapi.vercel.app/nodejs?color=83CD29ff&size=75" alt="NodeJS Logo"/>](https://nodejs.org/en) | [<img src="https://deviconapi.vercel.app/typescript?color=007ACCFF&size=75" alt="TypeScript Logo" />](https://www.typescriptlang.org) | [<img src="https://deviconapi.vercel.app/nestjs?color=DF234FFF&size=75" alt="NestJS Logo"/>](https://nestjs.com)  | [<img src="https://deviconapi.vercel.app/postgresql?version=plain&color=336791FF&size=75" alt="PostgreSQL Logo" />](https://www.postgresql.org) | [<img src="https://avatars.githubusercontent.com/u/54766168?s=200&v=4" width="75" alt="Mikro-ORM logo" />](https://mikro-orm.io) | [<img src="https://deviconapi.vercel.app/docker?color=019BC6FF&size=75" alt="Docker Logo" />](https://www.docker.com) |
 
 ## Instructions
 1. Fork this repository and use it as ```template``` repository
