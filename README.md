@@ -27,6 +27,8 @@ a [discussion topic](https://github.com/andrea-acampora/nestjs-ddd-quickstarter/
 
 In the following chapters you will find a description of the main choices, technologies and techniques adopted.
 
+**DISCLAIMER**: This page is not an article about Domain-Driven Design or Clean Architecture: the sole purpose of this page is to explain some of the principles and techniques used in this project. For some of the chapters there is an introduction and a basic explanation so as to provide all the elements necessary to understand the choices made.
+
 ## Stack
 
 | NodeJS    | TypeScript | NestJS |  PostgreSQL   | Mikro-ORM  | Docker |
@@ -87,6 +89,16 @@ application. A module class define providers and inject them into other componen
 ---
 
 ### Domain-Driven Design
+During my studies i had the opportunity to learn some patterns and principles belonging to Domain Driven Design so i will try to apply some of them in this project.
+
+_Domain-Driven Design (DDD)_, introduced by _Eric Evans_ in his seminal book [Domain-Driven Design: Tackling Complexity in the Heart of Software](https://www.amazon.com/Domain-Driven-Design-Tackling-Complexity-Software/dp/0321125215), is an approach to software development that focuses on modeling software to match the complex realities of the business domain. It emphasizes collaboration between domain experts and software developers to build a shared understanding of the problem domain and to reflect that understanding in the code.\
+DDD is structured into two main aspects:
+- **Strategic Design**: focuses on the high-level design of the system, defining boundaries and relationships between different parts of the domain.
+- **Tactical Design**: deals with patterns and building blocks that guide the implementation within the defined boundaries.
+
+**Strategic Design**
+
+**Tactical Design**
 
 ---
 
