@@ -103,7 +103,12 @@ DDD is structured into two main aspects:
 Strategic design provides a big-picture approach to defining how different subdomains interact and how to partition a system into well-defined parts. 
 On this page we will not cover the _Problem Space_, which includes, for example, the identification of subdomains, but we will talk directly about how to manage and implement the various _Bounded Contexts_ designed. 
 
-A _Bounded Context_ defines the explicit boundaries in which a particular domain model is defined and applied. Each context has its own domain logic, rules, and language, preventing ambiguity and inconsistencies when working with other contexts. It helps in maintaining clarity and separation of concerns within complex systems. 
+A _Bounded Context_ defines the explicit boundaries in which a particular domain model is defined and applied. Each context has its own domain logic, rules, and language, preventing ambiguity and inconsistencies when working with other contexts. It helps in maintaining clarity and separation of concerns within complex systems.
+
+<p align="center">
+<img src="https://raw.githubusercontent.com/andrea-acampora/nestjs-ddd-quickstarter/refs/heads/gh-pages/assets/images/bounded-context.png" height="250" alt="Schema of Bounded Context Anatomy" /><br>
+<sup>Schema of Bounded Context Anatomy.</sup>
+</p>
 
 In a [NestJS](https://docs.nestjs.com/) project, every bounded context can be implemented as a separate module.\
 Each module encapsulates its own domain logic, application services, and infrastructure concerns, ensuring clear separation and maintainability. For this reason, each module's name should reflect an important concept from the Domain and have its own folder with a dedicated codebase (`src/modules`). \
@@ -131,6 +136,19 @@ Tactical design is a set of design patterns and building blocks that we can use 
 These building blocks are built around the _OOP_ and _FP_ techniques and their role is to help to manage complexity and ensure clarity behavior within the domain model.
 
 **Entities**
+Entities represent domain objects that have a distinct `identity` and `lifecycle`. Unlike value objects, which are defined solely by their attributes, entities are primarily distinguished by their identity, which remains consistent over time despite changes to their attributes.
+Entities should be behavior-oriented and they should expose expressive methods that communicate domain behaviors instead of exposing state.
+[NestJS](https://docs.nestjs.com/) provides support for entities through its integration with _Object-Relational Mapping (ORM)_ tools such as [Mikro-ORM](https://mikro-orm.io/), [TypeORM](https://typeorm.io/) and [Prisma](https://www.prisma.io/). While these tools help with persistence, it is essential to align [NestJS](https://docs.nestjs.com/) entities with DDD principles to ensure a clear separation of concerns.
+
+There are two primary strategies to consider when integrating [NestJS](https://docs.nestjs.com/) entities with _DDD_:
+
+1. Separating `Persistence Entities` from `Domain Entities`: with this approach, the domain model is kept clean and independent of the persistence layer. Persistence entities are used strictly for database operations, while domain entities encapsulate business logic. The pros of this approach are: a clear separation of concerns, an improved maintainability and testability and finally domain entities remain persistence-agnostic. The main drawback is that it introduces additional complexity due to the need for mapping between domain and persistence entities.
+
+2. Using `Persistence Entities` as `Domain Entities`: this approach consolidates domain and persistence concerns into a single model, leveraging persistence entities to contain both database and domain logic. The benfeit of this approach is the simplicity of the codebase by reducing duplication while the drawback is the coupling between domain logic and persistence concerns.
+
+
+
+
 
 **Value Objects**
 
@@ -511,7 +529,7 @@ In this project we will enable _URI versioning_ globally, in the following way:
 
 ```
 
-The version in the URI will be automatically prefixed with v by default, however the prefix value can be configured by setting the prefix key to your desired prefix or false if you wish to disable it. \
+The version in the URI will be automatically prefixed with `v` by default, however the prefix value can be configured by setting the prefix key to your desired prefix or false if you wish to disable it. \
 In addition to the global configuration, it is also possible to specify the version of individual routes or controllers. In this case, this version will override any other version that would effect the route.
 
 If you want to deep dive and to understand in detail how this tool works, please refer to the official [documentation](https://docs.nestjs.com/techniques/versioning).
