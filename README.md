@@ -56,6 +56,8 @@ In the following chapters you will find a description of the main choices, techn
 
 - [Architecture](#architecture)
 - [Domain-Driven Design](#domain-driven-design)
+  - [Strategic Design](#strategic-design)
+  - [Tactical Design](#tactical-design)
 - [Clean Architecture](#clean-architecture)
 - [Testing](#testing)
 - [Functional Programming](#functional-programming)
@@ -67,7 +69,7 @@ In the following chapters you will find a description of the main choices, techn
 - [Backend Best Practices](#backend-best-practices)
 
 ### Architecture
-**NestJS** provides a modular architecture that allows the creation of loosely coupled and easily testable components. \
+[NestJS](https://docs.nestjs.com/) provides a modular architecture that allows the creation of loosely coupled and easily testable components. \
 Although this framework natively supports the development of microservice or event-driven architectures, they will not
 be considered because the purpose of this project is just to create a simple, extensible and ready-to-use application. \
 For this reason, we are going to implement a **Modular Monolith**: an architectural pattern that structures the
@@ -82,7 +84,7 @@ In addition to simplicity and extensibility, a modular monolith allows us to sta
 a single repository and deployment unit, with distinct and clear boundaries between business contexts.
 By this way, we can gradually refactor our architecture to a microservice architecture rather than implementing it from
 the beginning. \
-In **NestJS**, applications typically consists of multiple modules, each serving a specific purpose or feature set.
+In [NestJS](https://docs.nestjs.com/), applications typically consists of multiple modules, each serving a specific purpose or feature set.
 A module is a class annotated with the `@Module()` decorator, and it encapsulates a specific domain or feature of the
 application. A module class define providers and inject them into other components leveraging **Dependency Injection**.
 
@@ -91,14 +93,63 @@ application. A module class define providers and inject them into other componen
 ### Domain-Driven Design
 During my studies i had the opportunity to learn some patterns and principles belonging to Domain Driven Design so i will try to apply some of them in this project.
 
-_Domain-Driven Design (DDD)_, introduced by _Eric Evans_ in his seminal book [Domain-Driven Design: Tackling Complexity in the Heart of Software](https://www.amazon.com/Domain-Driven-Design-Tackling-Complexity-Software/dp/0321125215), is an approach to software development that focuses on modeling software to match the complex realities of the business domain. It emphasizes collaboration between domain experts and software developers to build a shared understanding of the problem domain and to reflect that understanding in the code.\
+_Domain-Driven Design (DDD)_, introduced by _Eric Evans_ in his seminal book [Domain-Driven Design: Tackling Complexity in the Heart of Software](https://www.amazon.com/Domain-Driven-Design-Tackling-Complexity-Software/dp/0321125215), is an approach to software development that focuses on modeling software to match the complex realities of the business domain. It emphasizes collaboration between domain experts and software developers to build a shared understanding of the problem domain and to reflect that understanding in the code.
+
 DDD is structured into two main aspects:
 - **Strategic Design**: focuses on the high-level design of the system, defining boundaries and relationships between different parts of the domain.
 - **Tactical Design**: deals with patterns and building blocks that guide the implementation within the defined boundaries.
 
-**Strategic Design**
+## Strategic Design
+Strategic design provides a big-picture approach to defining how different subdomains interact and how to partition a system into well-defined parts. 
+On this page we will not cover the _Problem Space_, which includes, for example, the identification of subdomains, but we will talk directly about how to manage and implement the various _Bounded Contexts_ designed. 
 
-**Tactical Design**
+A _Bounded Context_ defines the explicit boundaries in which a particular domain model is defined and applied. Each context has its own domain logic, rules, and language, preventing ambiguity and inconsistencies when working with other contexts. It helps in maintaining clarity and separation of concerns within complex systems. 
+
+In a [NestJS](https://docs.nestjs.com/) project, every bounded context can be implemented as a separate module.\
+Each module encapsulates its own domain logic, application services, and infrastructure concerns, ensuring clear separation and maintainability. For this reason, each module's name should reflect an important concept from the Domain and have its own folder with a dedicated codebase (`src/modules`). \
+This approach ensures [loose coupling](https://en.wikipedia.org/wiki/Loose_coupling): refactoring of a module internals can be done easier because outside world only depends on module's public interface, and if bounded contexts are defined and designed properly each module can be easily separated into a microservice if needed without touching any domain logic or major refactoring.
+
+To ensure [modularity](https://www.geeksforgeeks.org/modularity-and-its-properties/) and [maintainability](https://en.wikipedia.org/wiki/Maintainability), try to make each module self-contained and minimize interactions between them. Treat each module as an independent mini-application that encapsulates a single business context. Try to avoid direct imports between modules to prevent [tight coupling](https://en.wikipedia.org/wiki/Coupling_(computer_programming)). This practice helps maintain separation of concerns, reduces dependencies, and prevents the code base from becoming a tangled and unmanageable structure.
+
+One of the most common factors that leads to the creation of `dependencies` and `tight coupling` between different bounded contexts is definitely the way they communicate. \
+There are several ways to facilitate communication between modules while maintaining loose coupling:
+1. **Event-Based Communication**: [NestJS](https://docs.nestjs.com/) provides the `@nestjs/event-emitter` package to facilitate communication between modules via `Domain Events`.
+Modules can publish domain events using the `Event Emitter` class, allowing other modules to subscribe and react to changes asynchronously.
+2. **Dependency Injection**: modules can inject services from other modules by importing them explicitly in the module definition, ensuring proper encapsulation.
+   ```typescript
+   @Module({
+       imports: [UsersModule],
+       providers: [OrdersService],
+     })
+   export class OrdersModule {}
+   ```
+4. **Shared Service**: a shared module can be created to hold common logic and utilities needed across multiple bounded contexts.
+5. **CQRS Pattern**: using the `@nestjs/cqrs package`, commands and queries can be dispatched to other modules following a clear separation of concern.
+
+## Tactical Design
+Tactical design is a set of design patterns and building blocks that we can use in the construction of our Domain Model.\
+These building blocks are built around the _OOP_ and _FP_ techniques and their role is to help to manage complexity and ensure clarity behavior within the domain model.
+
+**Entities**
+
+**Value Objects**
+
+**Repositories**
+
+**Factories**
+
+**Domain Services**
+
+**Domain Events**
+<!--
+Event Sourcing
+CQRS
+-->
+
+
+
+
+
 
 ---
 
@@ -371,10 +422,10 @@ This bot will reduce risk, improve code quality, and cut technical debt by autom
 ---
 
 ### Backend Best Practices
-In this section we will discuss some common backend best practices that we will use in this project. Most of them are directly supported by **NestJS** while others will need a custom implementation.
+In this section we will discuss some common backend best practices that we will use in this project. Most of them are directly supported by [NestJS](https://docs.nestjs.com/) while others will need a custom implementation.
 
 ### Caching
-As reported in the offical NestJS documentation, _Caching_ is a powerful and straightforward technique for enhancing application's performance. By acting as a temporary storage layer, it allows for quicker access to frequently used data, reducing the need to repeatedly fetch or compute the same information. This results in faster response times and improved overall efficiency. \
+As reported in the offical [NestJS](https://docs.nestjs.com/) documentation, _Caching_ is a powerful and straightforward technique for enhancing application's performance. By acting as a temporary storage layer, it allows for quicker access to frequently used data, reducing the need to repeatedly fetch or compute the same information. This results in faster response times and improved overall efficiency. \
 In this project, we will use the `@nestjs/cache-manager` package along with the `cache-manager` package. By default, with these packages use a `in-memory` strategy so everything is stored in the memory of the application.
 In this way, if the project grows, it will be possible to use an advanced solution and a dedicated database such as [Redis](https://redis.io/) as it is fully supported by the `@nestjs/cache-manager`. \
 If you want to deep dive and to understand in detail how this tool works, please refer to the official [documentation](https://docs.nestjs.com/techniques/caching#caching).
