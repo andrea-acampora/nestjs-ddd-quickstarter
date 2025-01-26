@@ -1,35 +1,35 @@
 ---
 layout: default
-title: NestJS Quickstarter
+title: NestJS DDD DevOps
 description: Ready-to-use project following Domain-Driven Design, Clean Architecture and Functional Programming best practices, combined with some DevOps techniques such as Continuous Integration, Continuous Delivery and Quality Assurance.
 ---
 
-# NestJS Quickstarter
+# NestJS DDD DevOps
 
-[![Build](https://github.com/andrea-acampora/nestjs-ddd-quickstarter/actions/workflows/build.yml/badge.svg)](https://github.com/andrea-acampora/nestjs-ddd-quickstarter/actions/workflows/build.yml)
-[![Release](https://github.com/andrea-acampora/nestjs-ddd-quickstarter/actions/workflows/release.yml/badge.svg)](https://github.com/andrea-acampora/nestjs-ddd-quickstarter/actions/workflows/release.yml)
-[![Delivery](https://github.com/andrea-acampora/nestjs-ddd-quickstarter/actions/workflows/delivery.yml/badge.svg)](https://github.com/andrea-acampora/nestjs-ddd-quickstarter/actions/workflows/delivery.yml)
+[![Build](https://github.com/andrea-acampora/nestjs-ddd-devops/actions/workflows/build.yml/badge.svg)](https://github.com/andrea-acampora/nestjs-ddd-devops/actions/workflows/build.yml)
+[![Release](https://github.com/andrea-acampora/nestjs-ddd-devops/actions/workflows/release.yml/badge.svg)](https://github.com/andrea-acampora/nestjs-ddd-devops/actions/workflows/release.yml)
+[![Delivery](https://github.com/andrea-acampora/nestjs-ddd-devops/actions/workflows/delivery.yml/badge.svg)](https://github.com/andrea-acampora/nestjs-ddd-devops/actions/workflows/delivery.yml)
 
-[![pages-build-deployment](https://github.com/andrea-acampora/nestjs-ddd-quickstarter/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/andrea-acampora/nestjs-ddd-quickstarter/actions/workflows/pages/pages-build-deployment)
+[![pages-build-deployment](https://github.com/andrea-acampora/nestjs-ddd-devops/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/andrea-acampora/nestjs-ddd-devops/actions/workflows/pages/pages-build-deployment)
 ![Node Current](https://img.shields.io/node/v/%40nestjs%2Fcore?logo=github&color=blue)
 
-[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg?logo=github)](https://github.com/andrea-acampora/nestjs-ddd-quickstarter/blob/main/LICENSE)
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg?logo=github)](https://github.com/andrea-acampora/nestjs-ddd-devops/blob/main/LICENSE)
 [![Semantic Release](https://img.shields.io/badge/semantic--release-angular-e10079?logo=semantic-release&color=violet)](https://github.com/semantic-release/semantic-release/tree/master)
 [![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-%23FE5196?logo=conventionalcommits&logoColor=white)](https://conventionalcommits.org)
 
-[![GitHub Pull Requests](https://img.shields.io/github/issues-pr-raw/andrea-acampora/nestjs-ddd-quickstarter?color=cyan&logo=github)]()
-[![GitHub Issues](https://img.shields.io/github/issues-raw/andrea-acampora/nestjs-ddd-quickstarter?style=flat&logo=github)](https://github.com/andrea-acampora/nestjs-ddd-quickstarter/issues)
-[![GitHub Repo stars](https://img.shields.io/github/stars/andrea-acampora/nestjs-ddd-quickstarter?style=flat&color=yellow&logo=github)](https://github.com/andrea-acampora/nestjs-ddd-quickstarter/stargazers)
-[![GitHub contributors](https://img.shields.io/github/contributors/andrea-acampora/nestjs-ddd-quickstarter?color=orange&logo=github)](https://github.com/andrea-acampora/nestjs-ddd-quickstarter/graphs/contributors)
+[![GitHub Pull Requests](https://img.shields.io/github/issues-pr-raw/andrea-acampora/nestjs-ddd-devops?color=cyan&logo=github)]()
+[![GitHub Issues](https://img.shields.io/github/issues-raw/andrea-acampora/nestjs-ddd-devops?style=flat&logo=github)](https://github.com/andrea-acampora/nestjs-ddd-devops/issues)
+[![GitHub Repo stars](https://img.shields.io/github/stars/andrea-acampora/nestjs-ddd-devops?style=flat&color=yellow&logo=github)](https://github.com/andrea-acampora/nestjs-ddd-devops/stargazers)
+[![GitHub contributors](https://img.shields.io/github/contributors/andrea-acampora/nestjs-ddd-devops?color=orange&logo=github)](https://github.com/andrea-acampora/nestjs-ddd-devops/graphs/contributors)
 
-The purpose of this [repository](https://github.com/andrea-acampora/nestjs-ddd-quickstarter) is to create a ready-to-use project following _Domain-Driven Design_, _Clean
+The purpose of this [repository](https://github.com/andrea-acampora/nestjs-ddd-devops) is to create a ready-to-use project following _Domain-Driven Design_, _Clean
 Architecture_ and _Functional Programming_ best practices combined with some _DevOps_ techniques such as _Continuous
 Integration_, _Continuous Delivery_ and _Quality Assurance_.
 
 The project is completely open source using the **MIT** license, feel free to contribute by opening
-a [issue](https://github.com/andrea-acampora/nestjs-ddd-quickstarter/issues/new/choose),
-a [pull request](https://github.com/andrea-acampora/nestjs-ddd-quickstarter/compare) or
-a [discussion topic](https://github.com/andrea-acampora/nestjs-ddd-quickstarter/discussions/new/choose).
+a [issue](https://github.com/andrea-acampora/nestjs-ddd-devops/issues/new/choose),
+a [pull request](https://github.com/andrea-acampora/nestjs-ddd-devops/compare) or
+a [discussion topic](https://github.com/andrea-acampora/nestjs-ddd-devops/discussions/new/choose).
 
 In the following chapters you will find a description of the main choices, technologies and techniques adopted.
 
@@ -82,7 +82,7 @@ For this reason, we are going to implement a **Modular Monolith**: an architectu
 application into independent modules or components with well-defined boundaries.
 
 <p align="center">
-<img src="https://raw.githubusercontent.com/andrea-acampora/nestjs-ddd-quickstarter/refs/heads/gh-pages/assets/images/modular-monolith.png" height="250" alt="Modular Monolith Architecture" /><br>
+<img src="https://raw.githubusercontent.com/andrea-acampora/nestjs-ddd-devops/refs/heads/gh-pages/assets/images/modular-monolith.png" height="250" alt="Modular Monolith Architecture" /><br>
 <sup>Example of a Modular Monolith Architecture.</sup>
 </p>
 
@@ -112,7 +112,7 @@ On this page we will not cover the _Problem Space_, which includes, for example,
 A _Bounded Context_ defines the explicit boundaries in which a particular domain model is defined and applied. Each context has its own domain logic, rules, and language, preventing ambiguity and inconsistencies when working with other contexts. It helps in maintaining clarity and separation of concerns within complex systems.
 
 <p align="center">
-<img src="https://raw.githubusercontent.com/andrea-acampora/nestjs-ddd-quickstarter/refs/heads/gh-pages/assets/images/bounded-context.png" height="250" alt="Schema of Bounded Context Anatomy" /><br>
+<img src="https://raw.githubusercontent.com/andrea-acampora/nestjs-ddd-devops/refs/heads/gh-pages/assets/images/bounded-context.png" height="250" alt="Schema of Bounded Context Anatomy" /><br>
 <sup>Schema of Bounded Context Anatomy.</sup>
 </p>
 
@@ -188,7 +188,7 @@ This architecture attempts to integrate some of the leading modern architecture 
 Since each module corresponds to a different Bounded Context, we are going to apply these principles within each module of the application.
 
 <p align="center">
-<img src="https://raw.githubusercontent.com/andrea-acampora/nestjs-ddd-quickstarter/refs/heads/gh-pages/assets/images/clean-architecture.png" height="250" alt="Clean Architecture" />
+<img src="https://raw.githubusercontent.com/andrea-acampora/nestjs-ddd-devops/refs/heads/gh-pages/assets/images/clean-architecture.png" height="250" alt="Clean Architecture" />
 <br>
 <sup>Different layers of the Clean Architecture.</sup>
 </p>
@@ -359,7 +359,7 @@ In this project we are going to use a custom version of the [Gitflow Workflow]( 
 Instead of a single `main` branch, this workflow uses two branches to record the history of the project. The `main` branch stores the official release history, and the `develop` branch serves as an integration branch for features. It's also convenient to tag all commits in the main branch with a version number. Each new feature should reside in its own branch, which can be pushed to the central repository for backup/collaboration. But, instead of branching off of main, feature branches use develop as their parent branch. When a feature is complete, it gets merged back into develop. Features should never interact directly with main.
 
 <p align="center">
-<img src="https://raw.githubusercontent.com/andrea-acampora/nestjs-ddd-quickstarter/refs/heads/gh-pages/assets/images/git-flow.jpg" height="250" alt="Gitflow Workflow" />
+<img src="https://raw.githubusercontent.com/andrea-acampora/nestjs-ddd-devops/refs/heads/gh-pages/assets/images/git-flow.jpg" height="250" alt="Gitflow Workflow" />
 <br>
 <sup>Gitflow branch structure.</sup>
 </p>
@@ -398,7 +398,7 @@ Accordingly, we are going to use the [Semantic-release-bot](https://github.com/s
 One of the fundamental practices of DevOps is _Continuous Integration_. It aims to continuously integrate code with the main line of development so that integration problems are detected early and software quality is improved by enabling a faster and more reliable development process. 
 
 <p align="center">
-<img src="https://raw.githubusercontent.com/andrea-acampora/nestjs-ddd-quickstarter/refs/heads/gh-pages/assets/images/continuous-integration.png" height="250" alt="Continuous Integration" /><br>
+<img src="https://raw.githubusercontent.com/andrea-acampora/nestjs-ddd-devops/refs/heads/gh-pages/assets/images/continuous-integration.png" height="250" alt="Continuous Integration" /><br>
 <sup>Pipeline of Continuous Integration and Delivery.</sup>
 </p>
 
@@ -407,11 +407,11 @@ In this project we are going to use [Github Actions](https://github.com/features
 - **Build**
 - **Release**
 
-The [**Build**](https://github.com/andrea-acampora/nestjs-ddd-quickstarter/blob/main/.github/workflows/build.yml) workflow consists of running tests and code quality checks on all combinations of operating system and different versions of _NodeJS_ in order to ensure proper performance on all platforms of interest.
+The [**Build**](https://github.com/andrea-acampora/nestjs-ddd-devops/blob/main/.github/workflows/build.yml) workflow consists of running tests and code quality checks on all combinations of operating system and different versions of _NodeJS_ in order to ensure proper performance on all platforms of interest.
 First, we are going to execute the `unit` tests and then, we are going to emulate a real scenario executing a _PostgreSQL_ database instance and running `end-to-end` tests to check the integrity of the application and to prevent regression errors. \
 The workflow is configured to run on pushes or pull request creation. In this way, it is possible to run the tests and provides the results of each test in the pull request, so you can see whether the change in your branch introduces an error. When all CI tests in the `build` workflow pass, the changes we pushed are ready to be reviewed by a team member or merged. When a test fails, one of our changes may have caused the failure.
 
-The [**Release**](https://github.com/andrea-acampora/nestjs-ddd-quickstarter/blob/main/.github/workflows/release.yml) workflow is responsible for running the `semantic release bot` to manage the automatic release of new versions of the software. This workflow is executed only if you are on the `main` branch and if a build workflow has previously completed successfully.
+The [**Release**](https://github.com/andrea-acampora/nestjs-ddd-devops/blob/main/.github/workflows/release.yml) workflow is responsible for running the `semantic release bot` to manage the automatic release of new versions of the software. This workflow is executed only if you are on the `main` branch and if a build workflow has previously completed successfully.
 
 ---
 
@@ -425,11 +425,11 @@ The [workflow](https://github.com/andrea-acampora/nestjs-ddd-quickstarter/blob/m
 3. **Docker Containerization**: we build the _Docker_ image of the application using a custom `Dockerfile`. The Dockerfile follows best practices by installing dependencies, running the build, and handling migrations and database schema creation on startup.
 4. **Deployment to GitHub Container Registry (GHCR)**: we securely login to GHCR using secrets, ensuring that credentials stay protected. Then we tag both `versioned` and `latest` container images to allows flexibility and rollback strategies.
 
-At the end of the workflow, if all the steps are successful, we can find the docker image of the application on [GitHub Packages](https://github.com/andrea-acampora?tab=packages&repo_name=nestjs-ddd-quickstarter). \
+At the end of the workflow, if all the steps are successful, we can find the docker image of the application on [GitHub Packages](https://github.com/andrea-acampora?tab=packages&repo_name=nestjs-ddd-devops). \
 So, you can download it and run it in this way:
 
 ```bash
-docker run -p 3000:3000 --env-file .env ghcr.io/andrea-acampora/nestjs-ddd-quickstarter:latest
+docker run -p 3000:3000 --env-file .env ghcr.io/andrea-acampora/nestjs-ddd-devops:latest
 ```
 
 Remember that you need to provide a `.env` file with all database connection variables. Alternatively, you can create a `docker-compose` file with a _PostgreSQL_ service and a service containing the image you just created so that the app and database can communicate via an internal network.
@@ -544,6 +544,6 @@ If you want to deep dive and to understand in detail how this tool works, please
 
 ## Contributors
 
-<a href="https://github.com/andrea-acampora/nestjs-ddd-quickstarter/contributors">
-  <img src="https://contributors-img.web.app/image?repo=andrea-acampora/nestjs-ddd-quickstarter" alt="Contributors" />
+<a href="https://github.com/andrea-acampora/nestjs-ddd-devops/contributors">
+  <img src="https://contributors-img.web.app/image?repo=andrea-acampora/nestjs-ddd-devops" alt="Contributors" />
 </a>
