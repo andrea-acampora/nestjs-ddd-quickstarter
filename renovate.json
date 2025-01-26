@@ -24,6 +24,7 @@
             "automerge": true
         }
     ],
+    "baseBranches": ["develop"],
     "dependencyDashboard": true,
     "automerge": true,
     "automergeType": "pr",
