@@ -136,9 +136,11 @@ Tactical design is a set of design patterns and building blocks that we can use 
 These building blocks are built around the _OOP_ and _FP_ techniques and their role is to help to manage complexity and ensure clarity behavior within the domain model.
 
 **Entities**
+
 Entities represent domain objects that have a distinct `identity` and `lifecycle`. Unlike value objects, which are defined solely by their attributes, entities are primarily distinguished by their identity, which remains consistent over time despite changes to their attributes.
 Entities should be behavior-oriented and they should expose expressive methods that communicate domain behaviors instead of exposing state.
 [NestJS](https://docs.nestjs.com/) provides support for entities through its integration with _Object-Relational Mapping (ORM)_ tools such as [Mikro-ORM](https://mikro-orm.io/), [TypeORM](https://typeorm.io/) and [Prisma](https://www.prisma.io/). While these tools help with persistence, it is essential to align [NestJS](https://docs.nestjs.com/) entities with DDD principles to ensure a clear separation of concerns.
+
 
 There are two primary strategies to consider when integrating [NestJS](https://docs.nestjs.com/) entities with _DDD_:
 
