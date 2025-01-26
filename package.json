@@ -1,5 +1,5 @@
 {
-  "name": "nestjs-ddd-quickstarter",
+  "name": "nestjs-ddd-devops",
   "version": "0.0.1",
   "description": "Template repository for NestJS projects following Domain-Driven Design, Clean Architecture and Functional Programming principles and best practice.",
   "author": "Andrea Acampora",

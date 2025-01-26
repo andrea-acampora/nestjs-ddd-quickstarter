@@ -414,7 +414,7 @@ The [**Release**](https://github.com/andrea-acampora/nestjs-ddd-devops/blob/main
 ### Continuous Delivery
 Continuous Delivery (CD) is a software development practice that enables teams to release new features, updates, and bug fixes to production environments rapidly, reliably, and sustainably. The primary goal of CD is to minimize the time between writing code and delivering it to users, while ensuring high quality and stability. \
 In this project, the **Continuous Delivery** workflow is built using **GitHub Actions** and **Docker** and it runs on a _Continuous Integration_ environment. \
-The [workflow](https://github.com/andrea-acampora/nestjs-ddd-quickstarter/blob/main/.github/workflows/delivery.yml) is realized in the following way:
+The [workflow](https://github.com/andrea-acampora/nestjs-ddd-devops/blob/main/.github/workflows/delivery.yml) is realized in the following way:
 
 1. **Automated Workflow with GitHub Actions**: the workflow is triggered automatically when a successful `Release` job is completed, ensuring only tested and verified code gets delivered. We use conditional execution to ensure that deployment only happens if the previous workflow (Release) succeeds.
 2. **Versioning**: we extract version tags using `git describe --tags --abbrev=0`, making sure each _Docker_ image is tagged correctly. This approach makes rollback, tracking, and auditing deployments very easy.
