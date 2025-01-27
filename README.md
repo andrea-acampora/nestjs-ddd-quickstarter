@@ -21,13 +21,13 @@ Architecture_ and _Functional Programming_ best practices combined with some _De
 Integration_, _Continuous Delivery_ and _Quality Assurance_.
 
 The project is completely open source using the **MIT** license, feel free to contribute by opening
-a [issue](https://github.com/andrea-acampora/nestjs-ddd-devops/issues/new/choose),
+an [issue](https://github.com/andrea-acampora/nestjs-ddd-devops/issues/new/choose),
 a [pull request](https://github.com/andrea-acampora/nestjs-ddd-devops/compare) or
 a [discussion topic](https://github.com/andrea-acampora/nestjs-ddd-devops/discussions/new/choose).
 
 In the following chapters you will find a description of the main choices, technologies and techniques adopted.
 
-**DISCLAIMER**: This page is not an article about Domain-Driven Design or Clean Architecture: the sole purpose of this page is to explain some of the principles and techniques used in this project. For some of the chapters there is an introduction and a basic explanation so as to provide all the elements necessary to understand the choices made.
+**DISCLAIMER**: This page is not an article about Domain-Driven Design or Clean Architecture: the sole purpose of this page is to explain some of the principles and techniques used in this project. For some of the chapters there is an introduction and a basic explanation to provide all the elements necessary to understand the choices made.
 
 ## Stack
 
@@ -46,11 +46,11 @@ In the following chapters you will find a description of the main choices, techn
      docker-compose up -d
      ```
 4. Provide a ```.env``` file with all required environment variables _(check out ```.env.dist``` example file)_
-5. Create and generate the database schema from your entities metadata:
+5. Create and generate the database schema from your entities' metadata:
      ```bash
      npm run schema:update
      ```
-7. Start to create your modules and entities following all the principles explained in the below chapters!
+6. Start to create your modules and entities following all the principles explained in the below chapters!
 
 ## Table of Contents
 
@@ -91,8 +91,6 @@ application. A module class define providers and inject them into other componen
 ---
 
 ### Domain-Driven Design
-During my studies i had the opportunity to learn some patterns and principles belonging to Domain Driven Design so i will try to apply some of them in this project.
-
 _Domain-Driven Design (DDD)_, introduced by _Eric Evans_ in his seminal book [Domain-Driven Design: Tackling Complexity in the Heart of Software](https://www.amazon.com/Domain-Driven-Design-Tackling-Complexity-Software/dp/0321125215), is an approach to software development that focuses on modeling software to match the complex realities of the business domain. It emphasizes collaboration between domain experts and software developers to build a shared understanding of the problem domain and to reflect that understanding in the code.
 
 DDD is structured into two main aspects:
@@ -128,8 +126,8 @@ Modules can publish domain events using the `Event Emitter` class, allowing othe
      })
    export class OrdersModule {}
    ```
-4. **Shared Service**: a shared module can be created to hold common logic and utilities needed across multiple bounded contexts.
-5. **CQRS Pattern**: using the `@nestjs/cqrs package`, commands and queries can be dispatched to other modules following a clear separation of concern.
+3. **Shared Service**: a shared module can be created to hold common logic and utilities needed across multiple bounded contexts.
+4. **CQRS Pattern**: using the `@nestjs/cqrs package`, commands and queries can be dispatched to other modules following a clear separation of concern.
 
 #### Tactical Design
 Tactical design is a set of design patterns and building blocks that we can use in the construction of our Domain Model.\
@@ -138,7 +136,7 @@ These building blocks are built around the _OOP_ and _FP_ techniques and their r
 **Entities**
 
 Entities represent domain objects that have a distinct `identity` and `lifecycle`. Unlike value objects, which are defined solely by their attributes, entities are primarily distinguished by their identity, which remains consistent over time despite changes to their attributes.
-Entities should be behavior-oriented and they should expose expressive methods that communicate domain behaviors instead of exposing state.
+Entities should be behavior-oriented, and they should expose expressive methods that communicate domain behaviors instead of exposing state.
 [NestJS](https://docs.nestjs.com/) provides support for entities through its integration with _Object-Relational Mapping (ORM)_ tools such as [Mikro-ORM](https://mikro-orm.io/), [TypeORM](https://typeorm.io/) and [Prisma](https://www.prisma.io/). While these tools help with persistence, it is essential to align [NestJS](https://docs.nestjs.com/) entities with DDD principles to ensure a clear separation of concerns.
 
 
@@ -146,13 +144,14 @@ There are two primary strategies to consider when integrating [NestJS](https://d
 
 1. Separating `Persistence Entities` from `Domain Entities`: with this approach, the domain model is kept clean and independent of the persistence layer. Persistence entities are used strictly for database operations, while domain entities encapsulate business logic. The pros of this approach are: a clear separation of concerns, an improved maintainability and testability and finally domain entities remain persistence-agnostic. The main drawback is that it introduces additional complexity due to the need for mapping between domain and persistence entities.
 
-2. Using `Persistence Entities` as `Domain Entities`: this approach consolidates domain and persistence concerns into a single model, leveraging persistence entities to contain both database and domain logic. The benfeit of this approach is the simplicity of the codebase by reducing duplication while the drawback is the coupling between domain logic and persistence concerns.
-
-
-
-
+2. Using `Persistence Entities` as `Domain Entities`: this approach consolidates domain and persistence concerns into a single model, leveraging persistence entities to contain both database and domain logic. The benefit of this approach is the simplicity of the codebase by reducing duplication while the drawback is the coupling between domain logic and persistence concerns.
 
 **Value Objects**
+
+A value object is an immutable type that is defined by its properties rather than a unique identity.
+Unlike entities, which are distinguished by their identities, value objects are distinguished by their attributes. Two value objects are considered equal if all their attributes are the same. \
+Examples of value objects are things like numbers, dates, monies and strings.
+
 
 **Repositories**
 
@@ -310,7 +309,7 @@ In this section we are going to discuss and to explore some technical choices us
 
  > Functional programming is a programming paradigm where programs are constructed by applying and composing functions. It is a declarative programming paradigm in which function definitions are trees of expressions that map values to other values, rather than a sequence of imperative statements which update the running state of the program.
 
-Since this is a web server using _NodeJS_ and _TypeScript_, the project will not be fully functional like _Scala_ or _Haskell_ applications. \
+Since this is a web server using _Node.js_ and _TypeScript_, the project will not be fully functional like _Scala_ or _Haskell_ applications. \
 Instead, we will try to apply the following principles belonging to functional programming with the aim of improving the quality of our code:
 
 - **Immutability**: one of the biggest headaches in _JavaScript_ is dealing with state changes and unexpected side effects. With FP principles like immutability, we avoid accidental data mutations. Instead of modifying objects directly, we create new ones. This approach makes our app more predictable and easier to debug. _TypeScript_'s type system helps enforce immutability with tools like readonly and utility types, ensuring your data stay consistent.
@@ -386,7 +385,7 @@ To define and configure the hooks we are going to use the tool [Lefthook](https:
 Regarding the versioning process, in this project we are going to follow the [Semantic Versioning](https://semver.org/lang/it/) specification. \
 According to _Semantic Versioning_, a version consists of three numbers: **Major**, **Minor**, and **Patch**. Each change to the source code results in an increase of one of these numbers based on the importance of the changes made. \
 Using the _Conventional Commit_ specification described earlier, it was possible to use the semantics of commits to understand when to make a new release and the importance of it. 
-Accordingly, we are going to use the [Semantic-release-bot](https://github.com/semantic-release/semantic-release), which follows the _Semantic Versioning_ specification, to automate the software release process and changelog generation by analyzing commits in order to identify the correct version increment. For the type of release to be associated with each commit, we are going to use the `semantic-release-preconfigured-conventional-commits` configuration. The bot is triggered upon the push of a commit on the main branch, and if, upon analyzing the commits, a new release needs to be executed, the bot will take care of executing a new release on **Github Release**.
+Accordingly, we are going to use the [Semantic-release-bot](https://github.com/semantic-release/semantic-release), which follows the _Semantic Versioning_ specification, to automate the software release process and changelog generation by analyzing commits in order to identify the correct version increment. For the type of release to be associated with each commit, we are going to use the `semantic-release-preconfigured-conventional-commits` configuration. The bot is triggered upon the push of a commit on the main branch, and if, upon analyzing the commits, a new release needs to be executed, the bot will take care of executing a new release on **GitHub Release**.
 
 ---
 
@@ -398,12 +397,12 @@ One of the fundamental practices of DevOps is _Continuous Integration_. It aims 
 <sup>Pipeline of Continuous Integration and Delivery.</sup>
 </p>
 
-In this project we are going to use [Github Actions](https://github.com/features/actions) to create and execute our CI workflows:
+In this project we are going to use [GitHub Actions](https://github.com/features/actions) to create and execute our CI workflows:
 
 - **Build**
 - **Release**
 
-The [**Build**](https://github.com/andrea-acampora/nestjs-ddd-devops/blob/main/.github/workflows/build.yml) workflow consists of running tests and code quality checks on all combinations of operating system and different versions of _NodeJS_ in order to ensure proper performance on all platforms of interest.
+The [**Build**](https://github.com/andrea-acampora/nestjs-ddd-devops/blob/main/.github/workflows/build.yml) workflow consists of running tests and code quality checks on all combinations of operating system and different versions of _Node.js_ in order to ensure proper performance on all platforms of interest.
 First, we are going to execute the `unit` tests and then, we are going to emulate a real scenario executing a _PostgreSQL_ database instance and running `end-to-end` tests to check the integrity of the application and to prevent regression errors. \
 The workflow is configured to run on pushes or pull request creation. In this way, it is possible to run the tests and provides the results of each test in the pull request, so you can see whether the change in your branch introduces an error. When all CI tests in the `build` workflow pass, the changes we pushed are ready to be reviewed by a team member or merged. When a test fails, one of our changes may have caused the failure.
 
@@ -413,13 +412,13 @@ The [**Release**](https://github.com/andrea-acampora/nestjs-ddd-devops/blob/main
 
 ### Continuous Delivery
 Continuous Delivery (CD) is a software development practice that enables teams to release new features, updates, and bug fixes to production environments rapidly, reliably, and sustainably. The primary goal of CD is to minimize the time between writing code and delivering it to users, while ensuring high quality and stability. \
-In this project, the **Continuous Delivery** workflow is built using **GitHub Actions** and **Docker** and it runs on a _Continuous Integration_ environment. \
+In this project, the **Continuous Delivery** workflow is built using **GitHub Actions** and **Docker**, and it runs on a _Continuous Integration_ environment. \
 The [workflow](https://github.com/andrea-acampora/nestjs-ddd-devops/blob/main/.github/workflows/delivery.yml) is realized in the following way:
 
 1. **Automated Workflow with GitHub Actions**: the workflow is triggered automatically when a successful `Release` job is completed, ensuring only tested and verified code gets delivered. We use conditional execution to ensure that deployment only happens if the previous workflow (Release) succeeds.
 2. **Versioning**: we extract version tags using `git describe --tags --abbrev=0`, making sure each _Docker_ image is tagged correctly. This approach makes rollback, tracking, and auditing deployments very easy.
 3. **Docker Containerization**: we build the _Docker_ image of the application using a custom `Dockerfile`. The Dockerfile follows best practices by installing dependencies, running the build, and handling migrations and database schema creation on startup.
-4. **Deployment to GitHub Container Registry (GHCR)**: we securely login to GHCR using secrets, ensuring that credentials stay protected. Then we tag both `versioned` and `latest` container images to allows flexibility and rollback strategies.
+4. **Deployment to GitHub Container Registry (GHCR)**: we securely log in to GHCR using secrets, ensuring that credentials stay protected. Then we tag both `versioned` and `latest` container images to allows flexibility and rollback strategies.
 
 At the end of the workflow, if all the steps are successful, we can find the docker image of the application on [GitHub Packages](https://github.com/andrea-acampora?tab=packages&repo_name=nestjs-ddd-devops). \
 So, you can download it and run it in this way:
@@ -470,7 +469,7 @@ Alternatively, if we want to stop the request from processing when non-whitelist
 To enable auto-transformation of payloads to typed objects according to their DTO classes, we have to se the `transform` option property to true.
 Since _TypeScript_ does not store metadata about generics or interfaces, when you use them in your DTOs, ValidationPipe may not be able to properly validate incoming data. For this reason, consider using concrete classes in your DTOs.
 
-Once the _Validation Pipe_ is registered globally, we can start to add some valdiation rules to our dtos.
+Once the _Validation Pipe_ is registered globally, we can start to add some validation rules to our dtos.
 ```typescript
 import { IsEmail, IsNotEmpty } from 'class-validator';
 
@@ -532,7 +531,7 @@ In this project we will enable _URI versioning_ globally, in the following way:
 ```
 
 The version in the URI will be automatically prefixed with `v` by default, however the prefix value can be configured by setting the prefix key to your desired prefix or false if you wish to disable it. \
-In addition to the global configuration, it is also possible to specify the version of individual routes or controllers. In this case, this version will override any other version that would effect the route.
+In addition to the global configuration, it is also possible to specify the version of individual routes or controllers. In this case, this version will override any other version that would affect the route.
 
 If you want to deep dive and to understand in detail how this tool works, please refer to the official [documentation](https://docs.nestjs.com/techniques/versioning).
 
