@@ -1,5 +1,8 @@
 .highlight table td { padding: 5px; }
 .highlight table pre { margin: 0; }
+.highlight code {
+  color: #fbf1c7 !important;
+}
 .highlight, .highlight .w {
   color: #fbf1c7;
   background-color: #282828 !important;
@@ -66,6 +69,9 @@
 }
 .highlight .nn {
   color: #8ec07c;
+}
+.highlight .nx {
+  color: #ffff;
 }
 .highlight .nc {
   color: #8ec07c;
