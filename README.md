@@ -99,7 +99,7 @@ DDD is structured into two main aspects:
 - **Strategic Design**: focuses on the high-level design of the system, defining boundaries and relationships between different parts of the domain.
 - **Tactical Design**: deals with patterns and building blocks that guide the implementation within the defined boundaries.
 
-## Strategic Design
+#### Strategic Design
 Strategic design provides a big-picture approach to defining how different subdomains interact and how to partition a system into well-defined parts. 
 On this page we will not cover the _Problem Space_, which includes, for example, the identification of subdomains, but we will talk directly about how to manage and implement the various _Bounded Contexts_ designed. 
 
@@ -131,7 +131,7 @@ Modules can publish domain events using the `Event Emitter` class, allowing othe
 4. **Shared Service**: a shared module can be created to hold common logic and utilities needed across multiple bounded contexts.
 5. **CQRS Pattern**: using the `@nestjs/cqrs package`, commands and queries can be dispatched to other modules following a clear separation of concern.
 
-## Tactical Design
+#### Tactical Design
 Tactical design is a set of design patterns and building blocks that we can use in the construction of our Domain Model.\
 These building blocks are built around the _OOP_ and _FP_ techniques and their role is to help to manage complexity and ensure clarity behavior within the domain model.
 
