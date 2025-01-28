@@ -1,4 +1,4 @@
-title: NestsJS DDD DevOps
+title: NestsJS-DDD-DevOps
 author:
   name: Andrea Acampora
   url: https://github.com/andrea-acampora
@@ -13,7 +13,7 @@ description: >
 repository: "https://github.com/andrea-acampora/nestjs-ddd-quickstarter"
 github_username: andrea-acampora
 baseurl: ""
-keywords: nestjs, ddd, nodejs, dev-ops
+keywords: nestjs, ddd, nodejs, devops, clean-architecture, domain-driven-design
 lang: en
 timezone: Europe/Paris
 markdown: kramdown
