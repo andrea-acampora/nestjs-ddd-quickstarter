@@ -1,6 +1,6 @@
 ---
 layout: default
-title: NestJS-DDD-DevOps
+title: NestJS template project with DDD and DevOps
 description: Ready-to-use project following Domain-Driven Design, Clean Architecture and Functional Programming best practices, combined with some DevOps techniques such as Continuous Integration, Continuous Delivery and Quality Assurance.
 ---
 
