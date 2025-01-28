@@ -1,4 +1,4 @@
-# NestJS DDD DevOps
+# NestJS-DDD-DevOps
 
 [![Build](https://github.com/andrea-acampora/nestjs-ddd-devops/actions/workflows/build.yml/badge.svg)](https://github.com/andrea-acampora/nestjs-ddd-devops/actions/workflows/build.yml)
 [![Release](https://github.com/andrea-acampora/nestjs-ddd-devops/actions/workflows/release.yml/badge.svg)](https://github.com/andrea-acampora/nestjs-ddd-devops/actions/workflows/release.yml)
