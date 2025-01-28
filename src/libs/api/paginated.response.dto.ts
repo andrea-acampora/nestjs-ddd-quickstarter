@@ -1,17 +1,17 @@
-import { Collection } from '../dto/collection';
+import { Collection } from './collection.interface';
 
-export interface ApiCollectionResponse<E> {
+export interface PaginatedResponse<E> {
   readonly data: E[];
   readonly offset: number;
   readonly limit: number;
   readonly total: number;
 }
 
-export const toApiCollectionResponse = <E>(
+export const toPaginatedResponse = <E>(
   data: Collection<E>,
   offset: number,
   limit: number,
-): ApiCollectionResponse<E> => {
+): PaginatedResponse<E> => {
   return {
     data: data.items,
     offset,

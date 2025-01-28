@@ -6,6 +6,8 @@ import {
 } from '@nestjs/platform-fastify';
 import { join } from 'path';
 import { ValidationPipe, VersioningType } from '@nestjs/common';
+import { ContextInterceptor } from './libs/interceptors/context.interceptor';
+import { ExceptionInterceptor } from './libs/interceptors/exception.interceptor';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestFastifyApplication>(
@@ -21,6 +23,8 @@ async function bootstrap() {
   app.useStaticAssets({
     root: join(__dirname, '../public'),
   });
+  app.useGlobalInterceptors(new ContextInterceptor());
+  app.useGlobalInterceptors(new ExceptionInterceptor());
   app.setGlobalPrefix('api');
   app.useGlobalPipes(
     new ValidationPipe({
@@ -29,7 +33,6 @@ async function bootstrap() {
       forbidNonWhitelisted: true,
     }),
   );
-
   const port = process.env.PORT || 3000;
   await app.listen(port, '0.0.0.0');
 }

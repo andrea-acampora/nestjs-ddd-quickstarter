@@ -75,7 +75,7 @@ be considered because the purpose of this project is just to create a simple, ex
 For this reason, we are going to implement a **Modular Monolith**: an architectural pattern that structures the
 application into independent modules or components with well-defined boundaries.
 
-<p align="center">
+<p style="text-align: center;">
 <img src="https://raw.githubusercontent.com/andrea-acampora/nestjs-ddd-devops/refs/heads/gh-pages/assets/images/modular-monolith.png" height="250" alt="Modular Monolith Architecture" /><br>
 <sup>Example of a Modular Monolith Architecture.</sup>
 </p>
@@ -103,7 +103,7 @@ On this page we will not cover the _Problem Space_, which includes, for example,
 
 A _Bounded Context_ defines the explicit boundaries in which a particular domain model is defined and applied. Each context has its own domain logic, rules, and language, preventing ambiguity and inconsistencies when working with other contexts. It helps in maintaining clarity and separation of concerns within complex systems.
 
-<p align="center">
+<p style="text-align: center;">
 <img src="https://raw.githubusercontent.com/andrea-acampora/nestjs-ddd-devops/refs/heads/gh-pages/assets/images/bounded-context.png" height="250" alt="Schema of Bounded Context Anatomy" /><br>
 <sup>Schema of Bounded Context Anatomy.</sup>
 </p>
@@ -152,6 +152,21 @@ A value object is an immutable type that is defined by its properties rather tha
 Unlike entities, which are distinguished by their identities, value objects are distinguished by their attributes. Two value objects are considered equal if all their attributes are the same. \
 Examples of value objects are things like numbers, dates, monies and strings.
 
+```typescript
+export abstract class ValueObject<T> {
+    protected readonly props: T;
+
+    constructor(props: T) {
+        this.props = Object.freeze(props);
+    }
+
+    equals(other?: ValueObject<T>): boolean {
+        if (other === null || other === undefined)
+            return false;
+        return JSON.stringify(this.props) === JSON.stringify(other.props);
+    }
+}
+```
 
 **Repositories**
 
@@ -160,6 +175,7 @@ Examples of value objects are things like numbers, dates, monies and strings.
 **Domain Services**
 
 **Domain Events**
+
 <!--
 Event Sourcing
 CQRS
@@ -182,7 +198,7 @@ This architecture attempts to integrate some of the leading modern architecture 
 **NestJS**, with its modular structure and robust features, provides an excellent foundation for applying Clean Architecture principles.
 Since each module corresponds to a different Bounded Context, we are going to apply these principles within each module of the application.
 
-<p align="center">
+<p style="text-align: center;">
 <img src="https://raw.githubusercontent.com/andrea-acampora/nestjs-ddd-devops/refs/heads/gh-pages/assets/images/clean-architecture.png" height="250" alt="Clean Architecture" />
 <br>
 <sup>Different layers of the Clean Architecture.</sup>
@@ -353,7 +369,7 @@ In order to make the best use of _DevOps_ practices, it is necessary to adopt an
 In this project we are going to use a custom version of the [Gitflow Workflow]( https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow). \
 Instead of a single `main` branch, this workflow uses two branches to record the history of the project. The `main` branch stores the official release history, and the `develop` branch serves as an integration branch for features. It's also convenient to tag all commits in the main branch with a version number. Each new feature should reside in its own branch, which can be pushed to the central repository for backup/collaboration. But, instead of branching off of main, feature branches use develop as their parent branch. When a feature is complete, it gets merged back into develop. Features should never interact directly with main.
 
-<p align="center">
+<p style="text-align: center;">
 <img src="https://raw.githubusercontent.com/andrea-acampora/nestjs-ddd-devops/refs/heads/gh-pages/assets/images/git-flow.jpg" height="250" alt="Gitflow Workflow" />
 <br>
 <sup>Gitflow branch structure.</sup>
@@ -392,7 +408,7 @@ Accordingly, we are going to use the [Semantic-release-bot](https://github.com/s
 ### Continuous Integration
 One of the fundamental practices of DevOps is _Continuous Integration_. It aims to continuously integrate code with the main line of development so that integration problems are detected early and software quality is improved by enabling a faster and more reliable development process. 
 
-<p align="center">
+<p style="text-align: center;">
 <img src="https://raw.githubusercontent.com/andrea-acampora/nestjs-ddd-devops/refs/heads/gh-pages/assets/images/continuous-integration.png" height="250" alt="Continuous Integration" /><br>
 <sup>Pipeline of Continuous Integration and Delivery.</sup>
 </p>
