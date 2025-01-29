@@ -8,7 +8,6 @@ import {
 import { throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { HttpException, HttpStatus } from '@nestjs/common';
-import { RequestContextService } from './context/app-request-context';
 
 @Injectable()
 export class ExceptionInterceptor implements NestInterceptor {
@@ -37,7 +36,6 @@ export class ExceptionInterceptor implements NestInterceptor {
               typeof response === 'string' ? response : response['message'],
             timestamp: new Date().toISOString(),
             path: context.switchToHttp().getRequest().url,
-            correlationId: RequestContextService.getRequestId(),
           }));
         }
 
@@ -48,7 +46,6 @@ export class ExceptionInterceptor implements NestInterceptor {
           message: error.message,
           timestamp: new Date().toISOString(),
           path: context.switchToHttp().getRequest().url,
-          correlationId: RequestContextService.getRequestId(),
         }));
       }),
     );
