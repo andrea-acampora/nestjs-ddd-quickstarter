@@ -20,14 +20,14 @@ The purpose of this [repository](https://github.com/andrea-acampora/nestjs-ddd-d
 Architecture_ and _Functional Programming_ best practices combined with some _DevOps_ techniques such as _Continuous
 Integration_, _Continuous Delivery_ and _Quality Assurance_.
 
-The project is completely open source using the **MIT** license, feel free to contribute by opening
+The project is completely open source under the **MIT** license, feel free to contribute by opening
 an [issue](https://github.com/andrea-acampora/nestjs-ddd-devops/issues/new/choose),
 a [pull request](https://github.com/andrea-acampora/nestjs-ddd-devops/compare) or
 a [discussion topic](https://github.com/andrea-acampora/nestjs-ddd-devops/discussions/new/choose).
 
 In the following chapters you will find a description of the main choices, technologies and techniques adopted.
 
-**DISCLAIMER**: This page is not an article about Domain-Driven Design or Clean Architecture: the sole purpose of this page is to explain some of the principles and techniques used in this project. For some of the chapters there is an introduction and a basic explanation to provide all the elements necessary to understand the choices made.
+**DISCLAIMER**: This page is not an article about _Domain-Driven Design_ or _Clean Architecture_: the sole purpose of this page is to explain some of the principles and techniques used in this project. For some of the chapters there is an introduction and a basic explanation to provide all the elements necessary to understand the choices made.
 
 ## Stack
 
@@ -67,12 +67,16 @@ In the following chapters you will find a description of the main choices, techn
 - [Continuous Delivery](#continuous-delivery)
 - [Automatic Dependency Update](#automatic-dependency-update)
 - [Backend Best Practices](#backend-best-practices)
+  - [Caching](#caching)
+  - [Data Validation](#data-validation)
+  - [Rate Limiting](#rate-limiting)
+  - [API Versioning](#api-versioning)
 
 ### Architecture
 [NestJS](https://docs.nestjs.com/) provides a modular architecture that allows the creation of loosely coupled and easily testable components. \
 Although this framework natively supports the development of microservice or event-driven architectures, they will not
 be considered because the purpose of this project is just to create a simple, extensible and ready-to-use application. \
-For this reason, we are going to implement a **Modular Monolith**: an architectural pattern that structures the
+For this reason, we will implement a **Modular Monolith**: an architectural pattern that structures the
 application into independent modules or components with well-defined boundaries.
 
 <p style="text-align: center;">
@@ -99,7 +103,7 @@ DDD is structured into two main aspects:
 
 #### Strategic Design
 Strategic design provides a big-picture approach to defining how different subdomains interact and how to partition a system into well-defined parts. 
-On this page we will not cover the _Problem Space_, which includes, for example, the identification of subdomains, but we will talk directly about how to manage and implement the various _Bounded Contexts_ designed. 
+On this page we will not cover the _Problem Space_, which includes, for example, the identification of subdomains, but we will discuss about how to manage and implement the various _Bounded Contexts_ designed. 
 
 A _Bounded Context_ defines the explicit boundaries in which a particular domain model is defined and applied. Each context has its own domain logic, rules, and language, preventing ambiguity and inconsistencies when working with other contexts. It helps in maintaining clarity and separation of concerns within complex systems.
 
@@ -112,11 +116,11 @@ In a [NestJS](https://docs.nestjs.com/) project, every bounded context can be im
 Each module encapsulates its own domain logic, application services, and infrastructure concerns, ensuring clear separation and maintainability. For this reason, each module's name should reflect an important concept from the Domain and have its own folder with a dedicated codebase (`src/modules`). \
 This approach ensures [loose coupling](https://en.wikipedia.org/wiki/Loose_coupling): refactoring of a module internals can be done easier because outside world only depends on module's public interface, and if bounded contexts are defined and designed properly each module can be easily separated into a microservice if needed without touching any domain logic or major refactoring.
 
-To ensure [modularity](https://www.geeksforgeeks.org/modularity-and-its-properties/) and [maintainability](https://en.wikipedia.org/wiki/Maintainability), try to make each module self-contained and minimize interactions between them. Treat each module as an independent mini-application that encapsulates a single business context. Try to avoid direct imports between modules to prevent [tight coupling](https://en.wikipedia.org/wiki/Coupling_(computer_programming)). This practice helps maintain separation of concerns, reduces dependencies, and prevents the code base from becoming a tangled and unmanageable structure.
+To ensure [modularity](https://www.geeksforgeeks.org/modularity-and-its-properties/) and [maintainability](https://en.wikipedia.org/wiki/Maintainability), we have to make each module self-contained and minimize interactions between them. It's very important to treat each module as an independent mini-application that encapsulates a single business context and to avoid direct imports between modules to prevent [tight coupling](https://en.wikipedia.org/wiki/Coupling_(computer_programming)). This practice helps maintain separation of concerns, reduces dependencies, and prevents the code base from becoming a tangled and unmanageable structure.
 
 One of the most common factors that leads to the creation of `dependencies` and `tight coupling` between different bounded contexts is definitely the way they communicate. \
 There are several ways to facilitate communication between modules while maintaining loose coupling:
-1. **Event-Based Communication**: [NestJS](https://docs.nestjs.com/) provides the `@nestjs/event-emitter` package to facilitate communication between modules via `Domain Events`.
+1. **Event-Based Communication**: [NestJS](https://docs.nestjs.com/) provides the `@nestjs/event-emitter` package to facilitate communication between modules via [Domain Events](#domain-events).
 Modules can publish domain events using the `Event Emitter` class, allowing other modules to subscribe and react to changes asynchronously.
 2. **Dependency Injection**: modules can inject services from other modules by importing them explicitly in the module definition, ensuring proper encapsulation.
    ```typescript
@@ -250,14 +254,14 @@ export abstract class DomainEvent<T> {
 **CQRS**
 
 *Command Query Responsibility Segregation (CQRS)* is a powerful architectural pattern used to separate the read and write sides of an application.\
-In CQRS, you have two distinct models: a `command model` that handles the commands that modify the state, and a `query model` that handles the queries that read the state.\
-The `command model` is usually implemented with an event-sourced aggregate, which is an entity that stores its state as a sequence of domain events.\
-The `query model` is usually implemented with a projection, which is a denormalized view of the state that is updated by subscribing to the domain events.\
-By using domain events, you can decouple the command and query models, and optimize them for different purposes.
+In CQRS, we have two distinct models: a `command model` that handles the commands that modify the state, and a `query model` that handles the queries that read the state.\
+The `command` model is usually implemented with an event-sourced aggregate, which is an entity that stores its state as a sequence of domain events.\
+The `query ` model is usually implemented with a projection, which is a denormalized view of the state that is updated by subscribing to the domain events.\
+By using domain events, we can decouple the command and query models, and optimize them for different purposes.
 
 In this project we'll use the `@nestjs/cqrs` package to implement the CQRS pattern.
 
-If you want to deep dive and to understand in detail how this tool works, please refer to the official [documentation](https://docs.nestjs.com/recipes/cqrs).
+If you want to deep dive and to understand in detail how this library works, please refer to the official [documentation](https://docs.nestjs.com/recipes/cqrs).
 
 
 ### Clean Architecture
@@ -267,8 +271,8 @@ In this context, we will be helped by the principles of **Clean Architecture**, 
 > Clean architecture is a software design philosophy that separates the elements of a design into ring levels. An important goal of clean architecture is to provide developers with a way to organize code in such a way that it encapsulates the business logic but keeps it separate from the delivery mechanism.
 
 This architecture attempts to integrate some of the leading modern architecture like [Hexagonal Architecture](https://en.wikipedia.org/wiki/Hexagonal_architecture_(software)), [Onion Architecture](http://jeffreypalermo.com/blog/the-onion-architecture-part-1/), [Screaming Architecture](https://blog.cleancoder.com/uncle-bob/2011/09/30/Screaming-Architecture.html) into one main architecture. \
-**NestJS**, with its modular structure and robust features, provides an excellent foundation for applying Clean Architecture principles.
-Since each module corresponds to a different Bounded Context, we are going to apply these principles within each module of the application.
+[NestJS](https://docs.nestjs.com/), with its modular structure and robust features, provides an excellent foundation for applying Clean Architecture principles.
+Since each module corresponds to a different _Bounded Context_, we are going to apply these principles within each module of the application.
 
 <p style="text-align: center;">
 <img src="https://raw.githubusercontent.com/andrea-acampora/nestjs-ddd-devops/refs/heads/gh-pages/assets/images/clean-architecture.png" height="250" alt="Clean Architecture" />
