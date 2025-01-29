@@ -1,4 +1,4 @@
-import {Controller, Get} from '@nestjs/common';
+import { Controller, Get } from '@nestjs/common';
 import {
   DiskHealthIndicator,
   HealthCheck,
