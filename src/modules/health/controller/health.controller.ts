@@ -1,16 +1,15 @@
-import { Controller, Get, VERSION_NEUTRAL } from '@nestjs/common';
+import {Controller, Get} from '@nestjs/common';
 import {
+  DiskHealthIndicator,
+  HealthCheck,
   HealthCheckService,
   HttpHealthIndicator,
-  HealthCheck,
-  MikroOrmHealthIndicator,
-  DiskHealthIndicator,
   MemoryHealthIndicator,
+  MikroOrmHealthIndicator,
 } from '@nestjs/terminus';
 
 @Controller({
   path: 'health',
-  version: VERSION_NEUTRAL,
 })
 export class HealthController {
   constructor(

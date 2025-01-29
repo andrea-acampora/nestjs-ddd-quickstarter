@@ -6,7 +6,6 @@ import {
 } from '@nestjs/platform-fastify';
 import { join } from 'path';
 import { ValidationPipe, VersioningType } from '@nestjs/common';
-import { ContextInterceptor } from './libs/interceptors/context.interceptor';
 import { ExceptionInterceptor } from './libs/interceptors/exception.interceptor';
 
 async function bootstrap() {
@@ -23,7 +22,6 @@ async function bootstrap() {
   app.useStaticAssets({
     root: join(__dirname, '../public'),
   });
-  app.useGlobalInterceptors(new ContextInterceptor());
   app.useGlobalInterceptors(new ExceptionInterceptor());
   app.setGlobalPrefix('api');
   app.useGlobalPipes(
