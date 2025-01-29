@@ -81,7 +81,7 @@ be considered because the purpose of this project is just to create a simple, ex
 For this reason, we are going to implement a **Modular Monolith**: an architectural pattern that structures the
 application into independent modules or components with well-defined boundaries.
 
-<p align="center">
+<p style="text-align: center;">
 <img src="https://raw.githubusercontent.com/andrea-acampora/nestjs-ddd-devops/refs/heads/gh-pages/assets/images/modular-monolith.png" height="250" alt="Modular Monolith Architecture" /><br>
 <sup>Example of a Modular Monolith Architecture.</sup>
 </p>
@@ -109,7 +109,7 @@ On this page we will not cover the _Problem Space_, which includes, for example,
 
 A _Bounded Context_ defines the explicit boundaries in which a particular domain model is defined and applied. Each context has its own domain logic, rules, and language, preventing ambiguity and inconsistencies when working with other contexts. It helps in maintaining clarity and separation of concerns within complex systems.
 
-<p align="center">
+<p style="text-align: center;">
 <img src="https://raw.githubusercontent.com/andrea-acampora/nestjs-ddd-devops/refs/heads/gh-pages/assets/images/bounded-context.png" height="250" alt="Schema of Bounded Context Anatomy" /><br>
 <sup>Schema of Bounded Context Anatomy.</sup>
 </p>
@@ -158,25 +158,113 @@ A value object is an immutable type that is defined by its properties rather tha
 Unlike entities, which are distinguished by their identities, value objects are distinguished by their attributes. Two value objects are considered equal if all their attributes are the same. \
 Examples of value objects are things like numbers, dates, monies and strings.
 
+```typescript
+export abstract class ValueObject<T> {
+    protected readonly props: T;
+
+    constructor(props: T) {
+        this.props = Object.freeze(props);
+    }
+
+    equals(other?: ValueObject<T>): boolean {
+        if (other === null || other === undefined)
+            return false;
+        return JSON.stringify(this.props) === JSON.stringify(other.props);
+    }
+}
+```
 
 **Repositories**
 
-**Factories**
+The _Repository_ pattern is a design principle that abstracts data access logic behind a set of interfaces, separating the business logic from direct interactions with data sources, such as databases.
+It centralizes data access operations, making code more maintainable, testable, and flexible. \
+To reduce dependencies and coupling between layers, interfaces are defined in the `domain layer`, but the implementation, which interacts with the database, resides outside in the `infrastructure layer`.
+
+```typescript
+
+export interface Repository<T> {
+    findById(id: number): Promise<Option<T>>;
+
+    findAll(): Promise<Collection<T>>;
+
+    save(entity: T): Promise<T>;
+
+    update(data: Partial<T>): Promise<T>;
+
+    delete(id: number): Promise<boolean>;
+}
+
+```
 
 **Domain Services**
 
+a _Domain Service_ is a stateless, operation-centric class that encapsulates domain logic or operations that don't naturally fit within the boundaries of an _Entity_ or a _Value Object_.
+These services are all about performing actions or providing domain-specific functionality that doesn't belong to a single entity.
+
+```typescript
+
+export interface DomainService<T> {
+    execute(): Promise<T>;
+}
+
+```
+
+**Application Services**
+
+An _Application Service_ is a service that represents a use case or operation in the application.
+It is typically implemented as a class that contains the application-specific business logic for performing a specific operation.
+
+```typescript
+
+export interface ApplicationService<I, O> {
+    execute(input: I): Promise<O>;
+}
+
+```
+
+While both of `application services` and `domain services` implement the business rules, there are fundamental logical and formal differences.
+- `application services` implement the use cases of the application, while `domain services` implement the core domain logic.
+- `application services` return *Data Transfer Objects* while `domain services` methods typically get and return the domain objects (entities, value objects).
+- `domain services` are typically used by the `application services` or other `domain services`, while `application services` are used by the *Presentation Layer* or *Client Applications*.
+
+
 **Domain Events**
-<!--
-Event Sourcing
-CQRS
--->
 
+Domain events are events that occur in a specific area or domain and are important for the business logic of an application.\
+In contrast to `integration events`, which can affect the entire application, domain events are closely linked to the specific domain or specialist area of your application.\
+Using domain events improves the modularity of an application, as individual components are loosely coupled and can work independently of each other.
 
+```typescript
 
+export abstract class DomainEvent<T> {
 
+    public readonly eventId: string;
 
+    public readonly name: string;
 
----
+    public readonly timeStamp: Date;
+
+    public readonly payload: T;
+
+    public readonly correlationId?: string;
+
+    public readonly version: number;
+}
+
+```
+
+**CQRS**
+
+*Command Query Responsibility Segregation (CQRS)* is a powerful architectural pattern used to separate the read and write sides of an application.\
+In CQRS, you have two distinct models: a `command model` that handles the commands that modify the state, and a `query model` that handles the queries that read the state.\
+The `command model` is usually implemented with an event-sourced aggregate, which is an entity that stores its state as a sequence of domain events.\
+The `query model` is usually implemented with a projection, which is a denormalized view of the state that is updated by subscribing to the domain events.\
+By using domain events, you can decouple the command and query models, and optimize them for different purposes.
+
+In this project we'll use the `@nestjs/cqrs` package to implement the CQRS pattern.
+
+If you want to deep dive and to understand in detail how this tool works, please refer to the official [documentation](https://docs.nestjs.com/recipes/cqrs).
+
 
 ### Clean Architecture
 Once the various bounded contexts have been identified and designed, it is necessary to proceed with the internal design of each module. \
@@ -188,7 +276,7 @@ This architecture attempts to integrate some of the leading modern architecture 
 **NestJS**, with its modular structure and robust features, provides an excellent foundation for applying Clean Architecture principles.
 Since each module corresponds to a different Bounded Context, we are going to apply these principles within each module of the application.
 
-<p align="center">
+<p style="text-align: center;">
 <img src="https://raw.githubusercontent.com/andrea-acampora/nestjs-ddd-devops/refs/heads/gh-pages/assets/images/clean-architecture.png" height="250" alt="Clean Architecture" />
 <br>
 <sup>Different layers of the Clean Architecture.</sup>
@@ -359,7 +447,7 @@ In order to make the best use of _DevOps_ practices, it is necessary to adopt an
 In this project we are going to use a custom version of the [Gitflow Workflow]( https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow). \
 Instead of a single `main` branch, this workflow uses two branches to record the history of the project. The `main` branch stores the official release history, and the `develop` branch serves as an integration branch for features. It's also convenient to tag all commits in the main branch with a version number. Each new feature should reside in its own branch, which can be pushed to the central repository for backup/collaboration. But, instead of branching off of main, feature branches use develop as their parent branch. When a feature is complete, it gets merged back into develop. Features should never interact directly with main.
 
-<p align="center">
+<p style="text-align: center;">
 <img src="https://raw.githubusercontent.com/andrea-acampora/nestjs-ddd-devops/refs/heads/gh-pages/assets/images/git-flow.jpg" height="250" alt="Gitflow Workflow" />
 <br>
 <sup>Gitflow branch structure.</sup>
@@ -398,7 +486,7 @@ Accordingly, we are going to use the [Semantic-release-bot](https://github.com/s
 ### Continuous Integration
 One of the fundamental practices of DevOps is _Continuous Integration_. It aims to continuously integrate code with the main line of development so that integration problems are detected early and software quality is improved by enabling a faster and more reliable development process. 
 
-<p align="center">
+<p style="text-align: center;">
 <img src="https://raw.githubusercontent.com/andrea-acampora/nestjs-ddd-devops/refs/heads/gh-pages/assets/images/continuous-integration.png" height="250" alt="Continuous Integration" /><br>
 <sup>Pipeline of Continuous Integration and Delivery.</sup>
 </p>
