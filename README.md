@@ -20,6 +20,14 @@ The purpose of this [repository](https://github.com/andrea-acampora/nestjs-ddd-d
 Architecture_ and _Functional Programming_ best practices combined with some _DevOps_ techniques such as _Continuous
 Integration_, _Continuous Delivery_ and _Quality Assurance_.
 
+**Key Features**: 
+- **Modular Monolith Architecture** with clear domain boundaries
+- **Test-Driven Development** with _Jest_ and _Supertest_
+- **Automated CI/CD** via _GitHub Actions_
+- **Semantic Versioning** & **Conventional Commits**
+- **Rate Limiting**, **Caching**, **Data Validation** and **API Versioning**
+- **Dockerized environment** with _PostgreSQL_
+
 The project is completely open source under the **MIT** license, feel free to contribute by opening
 an [issue](https://github.com/andrea-acampora/nestjs-ddd-devops/issues/new/choose),
 a [pull request](https://github.com/andrea-acampora/nestjs-ddd-devops/compare) or
