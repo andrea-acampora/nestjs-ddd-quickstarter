@@ -170,23 +170,95 @@ export abstract class ValueObject<T> {
 
 **Repositories**
 
-**Factories**
+The _Repository_ pattern is a design principle that abstracts data access logic behind a set of interfaces, separating the business logic from direct interactions with data sources, such as databases.
+It centralizes data access operations, making code more maintainable, testable, and flexible. \
+To reduce dependencies and coupling between layers, interfaces are defined in the `domain layer`, but the implementation, which interacts with the database, resides outside in the `infrastructure layer`.
+
+```typescript
+
+export interface Repository<T> {
+    findById(id: number): Promise<Option<T>>;
+
+    findAll(): Promise<Collection<T>>;
+
+    save(entity: T): Promise<T>;
+
+    update(data: Partial<T>): Promise<T>;
+
+    delete(id: number): Promise<boolean>;
+}
+
+```
 
 **Domain Services**
 
+a _Domain Service_ is a stateless, operation-centric class that encapsulates domain logic or operations that don't naturally fit within the boundaries of an _Entity_ or a _Value Object_.
+These services are all about performing actions or providing domain-specific functionality that doesn't belong to a single entity.
+
+```typescript
+
+export interface DomainService<T> {
+    execute(): Promise<T>;
+}
+
+```
+
+**Application Services**
+
+An _Application Service_ is a service that represents a use case or operation in the application.
+It is typically implemented as a class that contains the application-specific business logic for performing a specific operation.
+
+```typescript
+
+export interface ApplicationService<I, O> {
+    execute(input: I): Promise<O>;
+}
+
+```
+
+While both of `application services` and `domain services` implement the business rules, there are fundamental logical and formal differences.
+- `application services` implement the use cases of the application, while `domain services` implement the core domain logic.
+- `application services` return *Data Transfer Objects* while `domain services` methods typically get and return the domain objects (entities, value objects).
+- `domain services` are typically used by the `application services` or other `domain services`, while `application services` are used by the *Presentation Layer* or *Client Applications*.
+
+
 **Domain Events**
 
-<!--
-Event Sourcing
-CQRS
--->
+Domain events are events that occur in a specific area or domain and are important for the business logic of an application.\
+In contrast to `integration events`, which can affect the entire application, domain events are closely linked to the specific domain or specialist area of your application.\
+Using domain events improves the modularity of an application, as individual components are loosely coupled and can work independently of each other.
 
+```typescript
 
+export abstract class DomainEvent<T> {
 
+    public readonly eventId: string;
 
+    public readonly name: string;
 
+    public readonly timeStamp: Date;
 
----
+    public readonly payload: T;
+
+    public readonly correlationId?: string;
+
+    public readonly version: number;
+}
+
+```
+
+**CQRS**
+
+*Command Query Responsibility Segregation (CQRS)* is a powerful architectural pattern used to separate the read and write sides of an application.\
+In CQRS, you have two distinct models: a `command model` that handles the commands that modify the state, and a `query model` that handles the queries that read the state.\
+The `command model` is usually implemented with an event-sourced aggregate, which is an entity that stores its state as a sequence of domain events.\
+The `query model` is usually implemented with a projection, which is a denormalized view of the state that is updated by subscribing to the domain events.\
+By using domain events, you can decouple the command and query models, and optimize them for different purposes.
+
+In this project we'll use the `@nestjs/cqrs` package to implement the CQRS pattern.
+
+If you want to deep dive and to understand in detail how this tool works, please refer to the official [documentation](https://docs.nestjs.com/recipes/cqrs).
+
 
 ### Clean Architecture
 Once the various bounded contexts have been identified and designed, it is necessary to proceed with the internal design of each module. \
